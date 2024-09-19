@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -22,7 +20,7 @@ android {
     }
     buildFeatures {
        //noinspection DataBindingWithoutKapt
-       dataBinding = true
+      // dataBinding = true
         viewBinding = true
     }
     buildTypes {
@@ -54,18 +52,18 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
 
     // ViewModel
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
 
     // LiveData
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation("com.google.firebase:firebase-firestore:25.1.0")
     implementation("androidx.activity:activity-ktx:1.9.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     // Material Design
-    implementation ("com.google.android.material:material:1.3.0-alpha03")
-    implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61")
+    implementation ("com.google.android.material:material:1.12.0")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20")
    // implementation("com.sparkjava:spark-core:2.9.3")
 
 
@@ -75,6 +73,6 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
 }

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
 
     <LinearLayout android:gravity="start"
         android:id="@+id/linearErrorMessage"
@@ -75,4 +80,4 @@
             android:textAllCaps="false"
             android:text="@string/msg_try_another_keyword" />
     </LinearLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

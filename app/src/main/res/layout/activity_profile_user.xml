@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
 
     <FrameLayout android:id="@+id/frameProfil"
         android:layout_height="match_parent"
@@ -56,8 +61,6 @@
                     android:layout_height="@dimen/_150pxh"
                     android:layout_width="@dimen/_150pxh"
                     android:scaleType="centerCrop"
-                    circular="@{true}"
-                    imageRes="@{@drawable/img_rectangle_18}"
                     tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle_18"/>
                 <View
                     android:background="@drawable/rectangle_bg_green_a700_radius_12"
@@ -289,4 +292,4 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </FrameLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
