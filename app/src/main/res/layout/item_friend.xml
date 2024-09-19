@@ -1,76 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.cardview.widget.CardView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginVertical="1dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardElevation="1dp">
-
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginVertical="1dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardElevation="1dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.5"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="30dp"
-        android:paddingVertical="16dp">
+        android:paddingVertical="16dp"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="12dp">
 
-        <FrameLayout android:id="@+id/frameStackview"
-            android:layout_gravity="center_vertical"
+        <FrameLayout
+            android:id="@+id/frameStackview"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
+            android:layout_gravity="center_vertical">
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivFriend"
-                android:layout_gravity="center"
-                android:layout_height="@dimen/_50pxh"
-                android:layout_width="@dimen/_50pxh"
-                app:shapeAppearance="@style/photoCorner"
-                android:scaleType="centerCrop"
                 imageRes="@{@drawable/img_ellipse_3}"
+                android:layout_width="@dimen/_50pxh"
+                android:layout_height="@dimen/_50pxh"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                app:shapeAppearance="@style/photoCorner"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/img_ellipse_3"/>
+                tools:src="@drawable/img_ellipse_3" />
+
             <View
-                android:background="@drawable/rectangle_bg_light_green_a700_radius_5"
                 android:id="@+id/viewView"
-                android:layout_gravity="bottom|end"
+                android:layout_width="@dimen/_10pxh"
                 android:layout_height="@dimen/_10pxh"
-                android:layout_width="@dimen/_10pxh"/>
+                android:layout_gravity="bottom|end"
+                android:background="@drawable/rectangle_bg_light_green_a700_radius_5" />
         </FrameLayout>
-        <TextView android:ellipsize="end"
+
+        <TextView
             android:id="@+id/tvName"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:singleLine="true"
-            android:lines="1"
-            android:layout_marginHorizontal="20dp"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@id/frameStackview"
             style="@style/txtRobotomedium18"
-            tools:text="@string/name"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_toEndOf="@id/frameStackview"
+            android:ellipsize="end"
+            android:lines="1"
+            android:singleLine="true"
+            tools:text="@string/name" />
+
         <TextView
             android:id="@+id/tvLastMsg"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_3pxv"
-            android:layout_width="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_toEndOf="@id/frameStackview"
-            android:layout_alignParentBottom="true"
-            android:singleLine="true"
             style="@style/txtRobotoregular18_1"
-            tools:text="@string/lbl_ok_done"/>
-
-        <TextView android:ellipsize="end"
-            android:id="@+id/tvHour"
-            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="@dimen/_3pxv"
+            android:layout_toEndOf="@id/frameStackview"
+            android:singleLine="true"
+            tools:text="@string/lbl_ok_done" />
+
+        <TextView
+            android:id="@+id/tvHour"
+            style="@style/txtRobotoregular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:ellipsize="end"
             android:singleLine="true"
-            style="@style/txtRobotoregular14"
-            tools:text="@string/lbl_1_hr"/>
+            tools:text="@string/lbl_1_hr" />
     </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-</layout>
+</androidx.cardview.widget.CardView>
