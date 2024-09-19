@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginVertical="1dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="16dp">
+
+        <FrameLayout android:id="@+id/frameStackview"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivFriend"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/_50pxh"
+                android:layout_width="@dimen/_50pxh"
+                app:shapeAppearance="@style/photoCorner"
+                android:scaleType="centerCrop"
+                imageRes="@{@drawable/img_ellipse_3}"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_ellipse_3"/>
+            <View
+                android:background="@drawable/rectangle_bg_light_green_a700_radius_5"
+                android:id="@+id/viewView"
+                android:layout_gravity="bottom|end"
+                android:layout_height="@dimen/_10pxh"
+                android:layout_width="@dimen/_10pxh"/>
+        </FrameLayout>
+        <TextView android:ellipsize="end"
+            android:id="@+id/tvName"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:lines="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/frameStackview"
+            style="@style/txtRobotomedium18"
+            tools:text="@string/name"/>
+        <TextView
+            android:id="@+id/tvLastMsg"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3pxv"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_toEndOf="@id/frameStackview"
+            android:layout_alignParentBottom="true"
+            android:singleLine="true"
+            style="@style/txtRobotoregular18_1"
+            tools:text="@string/lbl_ok_done"/>
+
+        <TextView android:ellipsize="end"
+            android:id="@+id/tvHour"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            style="@style/txtRobotoregular14"
+            tools:text="@string/lbl_1_hr"/>
+    </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

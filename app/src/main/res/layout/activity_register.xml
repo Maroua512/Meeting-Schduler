@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout android:id="@+id/linearColumnvectorOne"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyle_2">
+
+        <androidx.appcompat.widget.Toolbar
+            android:gravity="start"
+            android:id="@+id/toolbarToolbar"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_48pxv"
+            android:paddingEnd="8dp"
+            android:layout_width="match_parent" >
+            <ImageView android:id="@+id/back"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_vector_indigo_900"
+                android:layout_marginEnd="16dp"
+                tools:ignore="ContentDescription"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            style="@style/txtPoppinssemibold44"
+            android:layout_weight="1"
+            android:text="@string/msg_create_an_account"
+            android:layout_height="0dp" />
+
+        <LinearLayout android:id="@+id/linearColumnenteryour"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_36pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_12pxv"
+            android:paddingEnd="@dimen/_16pxh"
+            android:paddingStart="@dimen/_16pxh"
+            android:paddingTop="@dimen/_12pxv" style="@style/groupStylewhite_A700_3">
+            <TextView android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:id="@+id/txtEnteryour"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_marginBottom="@dimen/_16pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                style="@style/txtPoppinsmedium20_1"
+                android:text="@string/msg_enter_your_informtions"/>
+            <TextView
+                android:id="@+id/formatPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sp"
+                android:padding="@dimen/_16sp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/green_500"
+                android:text="password_format"
+
+                />
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearContainer1"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_24pxv"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Parcent"
+                    android:hint="@string/msg_enter_your_email"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:drawableEnd="@drawable/email_icon"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearContainer2"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_24pxv"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/msg_enter_a_password"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/indigo_900"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Parcent"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearContainer3"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_24pxv"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ConfirmPassword"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/msg_confirm_password"
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/indigo_900"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Parcent"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end" android:gravity="center"
+                android:id="@+id/btnSignUp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_11pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_30pxh"
+                android:paddingTop="@dimen/_11pxv"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                style="@style/btnSolidRounded"
+                android:text="@string/lbl_sign_up"/>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
+                app:layout_constraintVertical_bias="0.062"
+                android:orientation="horizontal"
+                android:layout_marginVertical="@dimen/_16pxh"
+                >
+                <TextView android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/txtConfirmation"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/txtPoppinsmedium14"
+                    android:text="@string/msg_already_you_have"/>
+                <TextView android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/LoginNow"
+                    android:layout_marginStart="6dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    style="@style/txtPoppinsmedium14"
+                    android:textColor="@color/indigo_900"
+                    android:text="@string/lbl_login_now"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

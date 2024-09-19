@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout android:id="@+id/frameNotification"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/_8pxh"
+        style="@style/groupStylered_1">
+        <ImageView android:id="@+id/imageRequestService"
+            android:layout_gravity="bottom|end"
+            android:layout_height="@dimen/_48pxh"
+            android:layout_marginBottom="@dimen/_28pxv"
+            android:layout_marginEnd="@dimen/_12pxh"
+            android:layout_width="@dimen/_48pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_uil_trash_alt"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_uil_trash_alt"/>
+        <LinearLayout android:id="@+id/parentlayout"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_6pxv"
+            android:paddingEnd="@dimen/_8pxh"
+            android:paddingStart="@dimen/_8pxh"
+            android:paddingTop="@dimen/_6pxv" style="@style/groupStyleblue_gray_50_02cornerRadius">
+            <LinearLayout android:id="@+id/linearSwapedelete"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/_5pxv"
+                android:paddingEnd="@dimen/_8pxh"
+                android:paddingStart="@dimen/_8pxh"
+                android:paddingTop="@dimen/_5pxv" style="@style/groupStylecornerRadius_5">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageNotif"
+                    android:layout_gravity="center"
+                    app:shapeAppearance="@style/photoCorner"
+                    android:layout_height="@dimen/_40pxh"
+                    android:layout_width="@dimen/_40pxh"
+                    android:scaleType="centerCrop"
+                    imageRes="@{@drawable/img_ellipse_203_40x40}"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_ellipse_203_40x40"/>
+                <LinearLayout
+                    android:id="@+id/linearMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linearMessage1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtTitre"
+                            style="@style/txtPlusJakartaSansromanbold24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8pxh"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="@string/lbl_username" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtDetails"
+                        style="@style/txtPoppinsregular16_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1pxv"
+                        android:text="@string/msg_your_request_has" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:gravity="center_vertical"
+                android:id="@+id/linearActioncontainer"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_width="wrap_content" android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnFollowPath"
+                    style="@style/btnSolidRounded_8"
+                    android:layout_width="@dimen/_150pxh"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text="@string/lbl_follow_path"
+                    android:textAllCaps="false" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMessage"
+                    style="@style/btnSolidRounded_9"
+                    android:layout_width="@dimen/_150pxh"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_43pxh"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text="@string/lbl_message2"
+                    android:textAllCaps="false" />
+            </LinearLayout>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtTimestamp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_marginStart="@dimen/_8pxv"
+                android:layout_width="wrap_content"
+                android:lineSpacingExtra="@dimen/_7pxh"
+                android:singleLine="true"
+                style="@style/txtPoppinsmedium13_1"
+                android:text="@string/date"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

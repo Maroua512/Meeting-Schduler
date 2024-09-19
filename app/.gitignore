@@ -1,0 +1,14 @@
+# Android Studio files
+.idea/
+*.iml
+
+# Gradle files
+.gradle/
+/local.properties
+**/build/
+
+# Dependency directories
+.externalNativeBuild/
+.cxx/
+# Firebase
+google-services.json

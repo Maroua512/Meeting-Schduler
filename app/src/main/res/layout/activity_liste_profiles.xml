@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout android:id="@+id/linearColumnarrowLeftOne"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_46pxv"
+        android:paddingEnd="@dimen/_8pxh"
+        android:paddingStart="@dimen/_8pxh"
+        android:paddingTop="@dimen/_46pxv">
+        <LinearLayout android:id="@+id/linearRowarrowleft"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_width="wrap_content" android:orientation="horizontal">
+            <ImageView android:id="@+id/backHome"
+                android:layout_gravity="center_vertical"
+                android:layout_height="@dimen/_37pxh"
+                android:layout_width="@dimen/_50pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_arrow_left_indigo_900_37x50"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_arrow_left_indigo_900_37x50"/>
+            <TextView android:ellipsize="end" android:gravity="top"
+                android:id="@+id/txtHome"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                style="@style/txtRobotoregular30"
+                android:text="@string/lbl_home"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.SearchView
+            android:background="@drawable/rectangle_border_indigo_900_bf_radius_15"
+            android:gravity="center_horizontal"
+            android:id="@+id/searchEdit"
+            android:layout_height="@dimen/_52pxh"
+            android:layout_marginEnd="@dimen/_8pxh"
+            android:layout_marginStart="@dimen/_8pxh"
+            android:layout_marginTop="@dimen/_13pxv"
+            android:layout_width="match_parent"
+            android:theme="@style/searchViewsearch"
+            android:elevation="4dp"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/lbl_search" app:searchIcon="@drawable/img_search_gray_600_02"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:gravity="center_horizontal"
+            android:id="@+id/rvPrestataire"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_21pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            itemSpace="@{@dimen/_8pxh}"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_prestataire"/>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout android:padding="@dimen/_8pxh"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout android:gravity="center_vertical"
+        android:id="@+id/linearUserprofile"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_8pxh"
+        android:layout_marginVertical="@dimen/_3pxh"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_11pxv"
+        android:paddingHorizontal="@dimen/_8pxh"
+        android:elevation="10dp"
+        style="@style/groupStylewhite_A700_7"
+        >
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/id_user"
+            android:layout_height="@dimen/_70pxh"
+            android:layout_width="@dimen/_70pxh"
+            android:scaleType="centerCrop"
+            circular="@{true}"
+            app:shapeAppearance="@style/photoCorner"
+            style="@style/photoCorner"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/profil_vide"/>
+
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearColumnusername"
+                android:layout_toEndOf="@id/id_user"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8pxh"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/tvName"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    style="@style/txtPoppinsmedium24_4"
+                    android:text="Name "
+                    />
+                <LinearLayout android:id="@+id/linearRowaddresstext"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingBottom="4dp"
+                    android:orientation="horizontal">
+                    <ImageView android:id="@+id/imageAddressImage"
+                        android:layout_height="@dimen/_36pxh"
+                        android:layout_width="@dimen/_32pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_linkedin"
+                        tools:ignore="ContentDescription" />
+                    <TextView android:id="@+id/tvLocation"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8pxh"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        style="@style/txtPlusJakartaSansromanmedium16"
+                        android:text="@string/bio_user"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">Meeting Scheduler</string>
+    <string name="lbl_forgot_password">Forgot Password</string>
+    <string name="msg_don_t_have_an_account">Dont have an account</string>
+    <string name="lbl_log_in">Login </string>
+    <string name="lbl_sign_up">Sign Up</string>
+    <string name="msg_enter_your_email">Enter your email</string>
+    <string name="msg_enter_a_password">Enter a password</string>
+    <string name="msg_create_an_account">Create  an account </string>
+    <string name="msg_enter_a_username">Enter a username</string>
+    <string name="lbl_username">Username</string>
+    <string name="lbl_select_type">Select type</string>
+    <string name="lbl_mohamed">Mohamed</string>
+    <string name="msg_edit_profile_information">Edit profile information</string>
+    <string name="lbl_resend_email">Resend email</string>
+    <string name="lbl_login_now">Login Now</string>
+    <string name="lbl_personnel2">Personnel</string>
+    <string name="lbl_messages">Messages</string>
+    <string name="lbl_enseignants">Enseignants</string>
+    <string name="msg_check_your_email">Check your Email</string>
+    <string name="lbl_notifications">Notifications</string>
+    <string name="lbl_edit_profile">Edit profile</string>
+    <string name="lbl_language">Language</string>
+    <string name="lbl_theme">Theme</string>
+    <string name="lbl_back">Back</string>
+    <string name="msg_try_another_keyword">Try another keyword</string>
+    <string name="msg_we_couldn_t_find">We couldn\u2019t find the page \u2028based on your search</string>
+    <string name="msg_no_results_found">No Results Found</string>
+    <string name="msg_check_wifi_setting">Try again</string>
+    <string name="msg_please_check_your">Please check your internet connection or try again</string>
+    <string name="msg_no_internet_connection">No internet connection</string>
+    <string name="date">12:00</string>
+    <string name="lbl_message2">Message</string>
+    <string name="lbl_follow_path">Follow path</string>
+    <string name="lbl_logout">Logout</string>
+    <string name="msg_your_request_has">your request has accepted by salem</string>
+    <string name="lbl_menu">Menu</string>
+    <string name="lbl_help_support">Help &amp; support</string>
+    <string name="lbl_privacy_policy">Privacy Policy</string>
+    <string name="lbl_history">History</string>
+    <string name="lbl_contact_us">Contact us</string>
+    <string name="lbl_light_mode">Light mode</string>
+    <string name="name">Name</string>
+    <string name="lbl_1_hr">12:00</string>
+    <string name="lbl_repairmans">Repairmans</string>
+    <string name="lbl_clients">Clients</string>
+    <string name="lbl_join">Join</string>
+    <string name="msg_prestataire_group">Prestataire Group</string>
+    <string name="lbl_ok_done">ok done ...</string>
+    <string name="lbl_etudiants">Etudiants</string>
+    <string name="lbl_contact">Contact </string>
+    <string name="lbl_home">Home</string>
+    <string name="lbl_search">Search for a Repairman</string>
+    <string name="bio_user">Etudiant Delegate</string>
+    <string name="msg_already_you_have">Already you have an account? </string>
+    <string name="msg_confirm_password">Confirm password</string>
+    <string name="msg_enter_your_informtions">Enter your informtions</string>
+    <string name="lbl_no">No</string>
+    <string name="lbl_yes">Yes</string>
+    <string name="msg_are_you_sure_you2">Are you sure you want to log out?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_confirm">Confirmer</string>
+    <string name="lbl_cancel">Cancel</string>
+
+    <string name="password_format">
+        hh
+       <!-- &#8226; Au moins 12 caractères&#10;
+        &#8226; Au moins deux lettres majuscules&#10;
+        &#8226; Au moins deux lettres minuscules&#10;
+        &#8226; Au moins deux chiffres&#10;
+        &#8226; Au moins deux caractères spéciaux&#10;
+        &#8226; Pas d'espaces ou de caractères blancs-->
+    </string>
+</resources>
+
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+
+    <LinearLayout android:id="@+id/linearChatclient"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtMessages"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_42pxh"
+            android:layout_marginTop="22dp"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            style="@style/txtRobotoregular30"
+            android:text="@string/lbl_messages"/>
+
+        <LinearLayout android:id="@+id/linearRowclients"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_23pxh"
+            android:layout_marginTop="@dimen/_26pxv"
+            android:layout_width="wrap_content" android:orientation="horizontal">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtClients"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingBottom="@dimen/_3pxv"
+                android:paddingEnd="@dimen/_4pxh"
+                android:paddingStart="@dimen/_4pxh"
+                android:paddingTop="@dimen/_3pxv"
+                android:singleLine="true"
+                android:background="@drawable/stroke"
+                style="@style/txtSolidRounded" android:text="@string/lbl_etudiants"/>
+            <TextView android:ellipsize="end"
+                android:gravity="bottom"
+                android:id="@+id/txtRepairmans"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_3pxv"
+                android:paddingEnd="@dimen/_4pxh"
+                android:paddingStart="@dimen/_4pxh"
+                android:paddingTop="@dimen/_3pxv"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:textColor="@color/indigo_900_66"
+                style="@style/txtRobotoregular18_2" android:text="@string/lbl_enseignants"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFriend"
+            android:layout_gravity="top|center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_26pxv"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="13"
+            tools:listitem="@layout/item_friend" />
+
+    </LinearLayout>
+</FrameLayout>

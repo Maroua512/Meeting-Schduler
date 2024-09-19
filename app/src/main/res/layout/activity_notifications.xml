@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+
+    <LinearLayout android:id="@+id/linearNotification"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_14pxh">
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtNotifications"
+            android:layout_gravity="start"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="22dp"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            style="@style/txtRobotoregular30" android:text="@string/lbl_notifications"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotification"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_26pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="13"
+            tools:listitem="@layout/item_notification"/>
+    </LinearLayout>
+</FrameLayout>

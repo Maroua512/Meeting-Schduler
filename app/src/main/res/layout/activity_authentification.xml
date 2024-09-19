@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout android:id="@+id/linearAuthentification"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyle">
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearColumnview"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" android:orientation="vertical">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView android:id="@+id/txtBienvenue"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent"
+                style="@style/txtIntersemibold36"
+                android:text="Bienvenue dans"/>
+
+            <TextView
+                android:id="@+id/txtDepaniVite"
+                style="@style/txtPoppinssemibold44"
+                android:layout_width="390dp"
+                android:layout_height="127dp"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:elevation="8dp"
+                android:text="Meeting Scheduler" />
+            <LinearLayout android:id="@+id/linearColumnmoveOne"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_68pxv"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_24pxv"
+                android:paddingEnd="@dimen/_16pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_24pxv" style="@style/groupStylewhite_A700_2">
+                <View android:background="@color/indigo_900"
+                    android:id="@+id/lineMoveOne"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="@dimen/_3pxv" android:layout_width="@dimen/_100pxh"/>
+
+
+                <LinearLayout android:gravity="center"
+                    android:id="@+id/linearRowenteryour"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_width="match_parent" android:orientation="horizontal">
+                    <TextView android:ellipsize="end"
+                        android:id="@+id/txtEnteryour"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:singleLine="true"
+                        android:text="Enter your Information"
+                        style="@style/txtPoppinsmedium20_1" />
+                </LinearLayout>
+                <LinearLayout android:gravity="start"
+                    android:id="@+id/linearContainer"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:layout_width="match_parent" android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/Email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/msg_enter_your_email"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Parcent"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
+                            android:drawableEnd="@drawable/email_icon1"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout android:gravity="start"
+                    android:id="@+id/linearContainer1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent" android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:hint="@string/msg_enter_a_password"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/indigo_900"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Parcent"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtForgotpassword"
+                    android:layout_gravity="end"
+                    android:textAlignment="textEnd"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_forgot_password"
+                    android:layout_marginTop="@dimen/_16pxv"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    style="@style/txtPoppinsmedium12" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:ellipsize="end" android:gravity="center"
+                    android:id="@+id/btnLogIn"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_12pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingStart="@dimen/_30pxh"
+                    android:paddingTop="@dimen/_12pxv"
+                    android:singleLine="true"
+                    android:text="@string/lbl_log_in"
+                    android:textAllCaps="false"
+                    style="@style/btnSolidRounded" />
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="@dimen/_16pxh"
+                    >
+                    <TextView android:ellipsize="end"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/txtConfirmation"
+                        android:layout_marginEnd="6dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        style="@style/txtPoppinsmedium14"
+                        android:text="@string/msg_don_t_have_an_account"/>
+                    <TextView android:ellipsize="end"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/SignUpLink"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        style="@style/txtPoppinsmedium14"
+                        android:textColor="@color/indigo_900"
+                        android:text="@string/lbl_sign_up"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

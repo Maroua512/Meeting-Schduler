@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/linearChat"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtMessages"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="@dimen/_42pxh"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            style="@style/txtRobotoregular30"
+            android:text="@string/lbl_messages"/>
+        <ImageView
+            android:id="@+id/btnAddGroupe"
+            android:layout_width="@dimen/_50pxh"
+            android:layout_height="@dimen/_50pxh"
+            android:src="@drawable/ic_add"
+            android:layout_gravity="right"
+            android:layout_marginEnd="@dimen/_16pxh"
+            />
+        <LinearLayout android:id="@+id/linearRowclients"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_23pxh"
+            android:layout_marginTop="@dimen/_26pxv"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtClients"
+                style="@style/txtRobotoregular18_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:textColor="@color/indigo_900_66"
+                android:paddingStart="@dimen/_4pxh"
+                android:paddingTop="@dimen/_1pxv"
+                android:paddingEnd="@dimen/_4pxh"
+                android:paddingBottom="@dimen/_1pxv"
+                android:singleLine="true"
+                android:text="@string/lbl_etudiants" />
+            <TextView android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:id="@+id/txtRepairmans"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_19pxh"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_1pxv"
+                android:paddingEnd="@dimen/_4pxh"
+                android:paddingStart="@dimen/_4pxh"
+                android:paddingTop="@dimen/_1pxv"
+                android:singleLine="true"
+                android:background="@drawable/stroke"
+                style="@style/txtSolidRounded"
+                android:text="@string/lbl_enseignants"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearColumnpeople"
+            android:layout_marginTop="@dimen/_20pxv"
+            android:layout_gravity="top|center"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" android:orientation="vertical">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvEnsiegant"
+                android:layout_gravity="top|center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="13"
+                tools:listitem="@layout/item_friend" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

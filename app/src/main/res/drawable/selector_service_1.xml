@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/rectangle_bg_white_a700_01_border_gray_300_e5_radius_20"
+        android:state_checked="false"/>
+
+    <item android:drawable="@drawable/rectangle_bg_gray_300_02_radius_20"
+        android:state_checked="true"/>
+
+    <item android:drawable="@drawable/rectangle_bg_white_a700_01_border_gray_300_e5_radius_20" />
+
+</selector>

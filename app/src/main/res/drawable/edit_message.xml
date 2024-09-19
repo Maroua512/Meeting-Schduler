@@ -1,0 +1,18 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bordure pour l'état normal -->
+    <item android:state_checked="false">
+        <shape>
+            <solid android:color="@android:color/transparent" /> <!-- Couleur de fond transparente -->
+            <stroke android:width="2dp" android:color="#3F51B5" /> <!-- Couleur et épaisseur de la bordure -->
+            <corners android:radius="4dp" /> <!-- Coins arrondis -->
+        </shape>
+    </item>
+    <!-- Bordure pour l'état coché -->
+    <item android:state_checked="true">
+        <shape>
+            <solid android:color="@android:color/transparent" /> <!-- Couleur de fond transparente -->
+            <stroke android:width="2dp" android:color="#3F51B5" /> <!-- Couleur et épaisseur de la bordure -->
+            <corners android:radius="4dp" /> <!-- Coins arrondis -->
+        </shape>
+    </item>
+</selector>
