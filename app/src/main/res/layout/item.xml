@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingVertical="4dp">
+
+        <!-- Day Number -->
+        <TextView
+            android:id="@+id/tvDayNumber"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="#000000"
+            android:layout_marginHorizontal="1dp"
+            android:background="@drawable/day_circle_bg"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Dot Indicator for events on this day -->
+        <LinearLayout
+            android:id="@+id/eventIndicatorContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/indicatorMeeting"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="1dp"
+                android:background="@drawable/circle_red"
+                android:visibility="visible"/>
+
+            <View
+                android:id="@+id/indicatorAssignment"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="1dp"
+                android:background="@drawable/circle_blue"
+                android:visibility="visible"/>
+
+            <View
+                android:id="@+id/indicatorInfo"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="1dp"
+                android:background="@drawable/circle_gray"
+                android:visibility="visible"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

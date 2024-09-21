@@ -17,6 +17,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.meetingscheduler.Model.D_Friend
 import com.marouasapplication.app.Data.Disscusion_user
 import com.meetingscheduler.adapters.ChatAdpater
+import com.meetingscheduler.ui.MainActivity
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat

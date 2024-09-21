@@ -1,4 +1,4 @@
-package com.meetingscheduler
+package com.meetingscheduler.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import android.os.Looper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.meetingscheduler.ui.Authentification
+import com.meetingscheduler.R
 
 class splash_screen : AppCompatActivity() {
     private val auth:FirebaseAuth = Firebase.auth

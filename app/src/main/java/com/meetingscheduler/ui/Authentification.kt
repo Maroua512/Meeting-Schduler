@@ -11,8 +11,8 @@ import android.widget.TextView
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.meetingscheduler.MainActivity
 import com.meetingscheduler.R
+
 
 
 class Authentification : AppCompatActivity() {

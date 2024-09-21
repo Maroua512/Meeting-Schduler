@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.meetingscheduler"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -50,6 +50,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:23.0.0")
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
+    //Calender
+    implementation ("com.applandeo:material-calendar-view:1.9.2")
+
 
     // ViewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
@@ -58,6 +61,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation("com.google.firebase:firebase-firestore:25.1.0")
     implementation("androidx.activity:activity-ktx:1.9.2")
+    implementation("androidx.activity:activity:1.9.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

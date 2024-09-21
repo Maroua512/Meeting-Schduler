@@ -66,7 +66,7 @@
 
     <string name="password_format">
         hh
-       <!-- &#8226; Au moins 12 caractères&#10;
+        <!-- &#8226; Au moins 12 caractères&#10;
         &#8226; Au moins deux lettres majuscules&#10;
         &#8226; Au moins deux lettres minuscules&#10;
         &#8226; Au moins deux chiffres&#10;
