@@ -24,7 +24,7 @@
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_width="match_parent"
                 style="@style/txtIntersemibold36"
-                android:text="Bienvenue dans"/>
+                android:text="@string/lbl_welcome"/>
 
             <TextView
                 android:id="@+id/txtDepaniVite"
@@ -33,7 +33,7 @@
                 android:layout_height="127dp"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:elevation="8dp"
-                android:text="Meeting Scheduler" />
+                android:text="@string/lbl_logo" />
             <LinearLayout android:id="@+id/linearColumnmoveOne"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_68pxv"

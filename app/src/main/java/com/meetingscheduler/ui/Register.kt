@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.meetingscheduler.Utils.ConfirmPasswordValidator
 import com.meetingscheduler.Utils.EmailValidation
 import com.meetingscheduler.Utils.PasswordValidation
-import com.meetingscheduler.ValidateService
+import com.meetingscheduler.Utils.ValidateService
 import com.meetingscheduler.ViewModels.RegisterViewModel
 import com.meetingscheduler.databinding.ActivityRegisterBinding
 

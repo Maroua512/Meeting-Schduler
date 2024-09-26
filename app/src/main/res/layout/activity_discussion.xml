@@ -83,7 +83,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="8dp"
                     android:layout_toStartOf="@id/fabSendMessage"
-                    android:hint="Message"
+                    android:hint="@string/lbl_message2"
                     style="@style/groupStylecornerRadius"
                     android:paddingStart="10dp" />
 

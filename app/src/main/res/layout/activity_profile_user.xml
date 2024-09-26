@@ -79,7 +79,7 @@
                 android:layout_gravity="center"
                 android:singleLine="true"
                 style="@style/txtRobotoregular24"
-                android:text="Maroua Aguen"/>
+                android:text="@string/name"/>
             <LinearLayout
                 android:gravity="center"
                 android:id="@+id/linearRowsubtractOne"
@@ -104,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:singleLine="true"
                         style="@style/txtPoppinsmedium18"
-                        android:text="Delegate Section"/>
+                        android:text="@string/user_role"/>
             </LinearLayout>
             <LinearLayout android:gravity="center"
                 android:id="@+id/linearRowview"

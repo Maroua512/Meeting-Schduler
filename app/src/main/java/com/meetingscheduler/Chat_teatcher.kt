@@ -15,8 +15,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.meetingscheduler.Model.D_Friend
-import com.marouasapplication.app.Data.Disscusion_user
+import com.meetingscheduler.Model.Disscusion_user
 import com.meetingscheduler.adapters.ChatAdpater
+import com.meetingscheduler.ui.Chat
 import com.meetingscheduler.ui.MainActivity
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await

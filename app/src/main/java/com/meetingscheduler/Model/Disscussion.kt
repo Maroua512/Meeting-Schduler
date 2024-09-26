@@ -1,6 +1,4 @@
-package com.meetingscheduler
-
-import com.meetingscheduler.Model.D_Message
+package com.meetingscheduler.Model
 
 data class Disscussion(
     var  id_disscussion :String ,

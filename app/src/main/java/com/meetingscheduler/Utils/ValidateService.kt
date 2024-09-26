@@ -1,4 +1,4 @@
-package com.meetingscheduler
+package com.meetingscheduler.Utils
 
 import com.google.android.material.textfield.TextInputLayout
 import com.meetingscheduler.Interfaces.Validator

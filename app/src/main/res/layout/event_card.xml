@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardEvent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="@dimen/_16pxh"
-    android:backgroundTint="@color/gray_400_01"
-    android:orientation="vertical"
-    app:cardCornerRadius="@dimen/_8pxh">
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="@dimen/_16pxh">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8pxh"
+        android:background="@color/white"
         android:padding="@dimen/_24pxh">
 
         <LinearLayout
@@ -21,19 +23,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+           >
+
             <ImageView
+                android:id="@+id/ic_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/notification"
                 android:layout_marginEnd="@dimen/_8pxh"
-                />
+                android:src="@drawable/notification" />
+
             <TextView
-                android:id="@+id/dateEvent"
+                android:id="@+id/heureEvent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="10:00 - 13:00"
+                android:text="@string/lbl_heure"
                 android:textColor="@color/light_green_A700"
                 android:textSize="@dimen/_16pxh"
                 android:textStyle="bold" />
@@ -46,11 +50,11 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/titre"
+            android:id="@+id/titreEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
-            android:text="Design new app for Alex"
+            android:text="@string/titre_event"
             android:textColor="@color/gray_900_02"
             android:textSize="@dimen/_20pxh"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,16 +62,16 @@
             app:layout_constraintTop_toBottomOf="@+id/linearContainer" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/descriptionEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="start from screen 16"
             android:layout_marginTop="8dp"
+            android:text="@string/description_event"
             android:textColor="@color/gray_500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titre" />
+            app:layout_constraintTop_toBottomOf="@+id/titreEvent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

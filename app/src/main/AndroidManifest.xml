@@ -15,7 +15,9 @@
         android:theme="@style/Theme.MeetingScheduler"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ui.DetailEvent"
+            android:exported="false" />
         <activity
             android:name=".chat_enseignant"
             android:exported="false" />
@@ -32,13 +34,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".discussion"
+            android:name=".ui.discussion"
             android:exported="false" />
         <activity
             android:name=".etudiant_chat"
             android:exported="false" />
         <activity
-            android:name=".Notifications"
+            android:name=".ui.Notifications"
             android:exported="false" />
         <activity
             android:name=".discussion_priver"
@@ -47,10 +49,10 @@
             android:name=".discussion_group"
             android:exported="false" />
         <activity
-            android:name=".liste_profiles"
+            android:name=".ui.liste_profiles"
             android:exported="false" />
         <activity
-            android:name=".Profile_user"
+            android:name=".ui.Profile_user"
             android:exported="false" />
         <activity
             android:name=".ui.Register"

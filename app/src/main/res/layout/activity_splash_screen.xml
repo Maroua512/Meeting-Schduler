@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Meeting Scheduler"
+        android:text="@string/lbl_logo"
         android:textColor="@color/white_A700"
         android:textSize="@dimen/_32pxh"
         app:layout_constraintBottom_toBottomOf="parent"

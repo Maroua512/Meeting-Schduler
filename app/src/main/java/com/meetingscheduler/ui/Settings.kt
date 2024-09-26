@@ -1,4 +1,4 @@
-package com.meetingscheduler
+package com.meetingscheduler.ui
 
 import android.app.Dialog
 import android.content.Intent
@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.meetingscheduler.ui.Authentification
+import com.meetingscheduler.R
 
 
 class Settings : Fragment() {
@@ -22,7 +22,7 @@ class Settings : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-      val view = inflater.inflate(R.layout.activity_settigns, container, false)
+      val view = inflater.inflate(R.layout.fragment_settings, container, false)
         btnlogout = view.findViewById(R.id.btnLogout)
 
         btnlogout.setOnClickListener {

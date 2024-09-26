@@ -1,43 +1,43 @@
-package com.meetingscheduler
+package com.meetingscheduler.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.meetingscheduler.Model.D_Message
+import com.meetingscheduler.R
+import com.meetingscheduler.ViewModels.DisscussionViewModel
 import com.meetingscheduler.adapters.DiscutionAdapter
 
 
-class discussion : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-    private lateinit var db: FirebaseFirestore
-    private var currentUser: FirebaseUser? = null
+class Discussion : AppCompatActivity() {
+    lateinit var discutionViewModel: DisscussionViewModel
+    lateinit var discutionAdapter: DiscutionAdapter
     private lateinit var back: ImageView
     lateinit var fabSendMessage: FloatingActionButton
     lateinit var editMessage: EditText
     lateinit var rvChatList: RecyclerView
-    lateinit var discutionAdapter: DiscutionAdapter
     lateinit var discussionName: TextView
     lateinit var discussionImage: ImageView
-    private var messages = mutableListOf<D_Message>()
     private var listenerRegistration: ListenerRegistration? = null
+    val db = Firebase.firestore
+    private var messages = mutableListOf<D_Message>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discussion)
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
-        currentUser = auth.currentUser
 
         back = findViewById(R.id.back)
         fabSendMessage = findViewById(R.id.fabSendMessage)
@@ -46,40 +46,38 @@ class discussion : AppCompatActivity() {
         discussionImage = findViewById(R.id.imageDiscussion)
         discussionName = findViewById(R.id.nameFriend)
 
-        discutionAdapter = DiscutionAdapter(currentUser!!.uid)
-        rvChatList.layoutManager = LinearLayoutManager(this)
-        rvChatList.adapter = discutionAdapter
+        discutionViewModel = ViewModelProvider(this).get(DisscussionViewModel::class.java)
+        //Intialisation de  l'adapter
+        discutionAdapter = DiscutionAdapter( Firebase.auth.currentUser!!.uid)
+        //Configuration de l'adapter
+       rvChatList.apply {
+            layoutManager = LinearLayoutManager(this@Discussion)
+            adapter = discutionAdapter
+        }
 
         back.setOnClickListener {
             finish()
         }
         // Ajouter un Snapshot Listener pour écouter les nouvelles données
-        listenerRegistration = db.collection("Disscussion").document("discussionId").collection("Messages")
-            .orderBy("timestamp")
-            .addSnapshotListener { snapshot, e ->
-                if (e != null) {
-                    Log.e("TAG", "Erreur de chargement des messages", e)
-                    return@addSnapshotListener
-                }
+        listenerRegistration =
+            db.collection("Disscussion").document("discussionId").collection("Messages")
+                .orderBy("timestamp")
+                .addSnapshotListener { snapshot, e ->
+                    if (e != null) {
+                        Log.e("TAG", "Erreur de chargement des messages", e)
+                        return@addSnapshotListener
+                    }
 
-                if (snapshot != null) {
-                    updateMessages(snapshot)
+                    if (snapshot != null) {
+                        updateMessages(snapshot)
+                    }
                 }
-            }
         fabSendMessage.setOnClickListener {
             val message = editMessage.text.toString()
             if (message.isNotEmpty()) {
-                val data = hashMapOf(
-                    "sender" to currentUser!!.uid,
-                    "texte" to message,
-                    "timestamp" to Timestamp.now()
-                )
-                db.collection("Disscussion").document("discussionId").collection("Messages").add(data)
-                    .addOnSuccessListener {
-                        editMessage.setText("")
-                    }.addOnFailureListener {
-                        Log.e("TAG", "Erreur lors de l'envoi du message", it)
-                    }
+                discutionViewModel.addMessage("id",message)
+                editMessage.setText("")
+
             }
         }
     }

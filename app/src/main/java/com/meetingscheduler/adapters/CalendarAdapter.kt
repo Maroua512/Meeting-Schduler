@@ -8,10 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.meetingscheduler.Model.Day
 import com.meetingscheduler.R
+import com.meetingscheduler.ViewModels.CalendarviewModel
+import java.util.Calendar
 
 class CalendarAdapter(
-    private var days: List<Day>,
-    private val onDayClickListener: (Day) -> Unit
+    private var days: List<Day>,private val onDayClicked:(Day)->Unit
+
 ) : RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
     inner class CalendarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,7 +22,6 @@ class CalendarAdapter(
         val indicatorMeeting: View = itemView.findViewById(R.id.indicatorMeeting)
         val indicatorAssignment: View = itemView.findViewById(R.id.indicatorAssignment)
         val indicatorInfo: View = itemView.findViewById(R.id.indicatorInfo)
-
         fun bind(day: Day) {
             dayTextView.text = day.dayNumber.toString()
 
@@ -38,10 +39,9 @@ class CalendarAdapter(
             } else {
                 eventIndicatorContainer.visibility = View.GONE
             }
-
-            itemView.setOnClickListener {
-                onDayClickListener(day)
-            }
+           itemView.setOnClickListener {
+               onDayClicked(day)
+           }
         }
     }
 

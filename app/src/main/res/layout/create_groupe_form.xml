@@ -56,7 +56,7 @@
                 android:layout_height="match_parent"
                 android:textSize="@dimen/_18pxh"
                 style="@style/txtIntermedium16"
-                android:text="Select an image for your groupe"
+                android:text="@string/message_create_groupe"
                 android:gravity="center"
                 />
             <ImageButton

@@ -39,7 +39,7 @@
                 android:paddingStart="@dimen/_8pxh"
                 android:paddingTop="@dimen/_5pxv" style="@style/groupStylecornerRadius_5">
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageNotif"
+                    android:id="@+id/imageProfile"
                     android:layout_gravity="center"
                     app:shapeAppearance="@style/photoCorner"
                     android:layout_height="@dimen/_40pxh"
@@ -64,7 +64,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/txtTitre"
+                            android:id="@+id/titre"
                             style="@style/txtPlusJakartaSansromanbold24"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/txtDetails"
+                        android:id="@+id/description"
                         style="@style/txtPoppinsregular16_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                     android:textAllCaps="false" />
             </LinearLayout>
             <TextView android:ellipsize="end"
-                android:id="@+id/txtTimestamp"
+                android:id="@+id/date"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8pxv"
                 android:layout_marginStart="@dimen/_8pxv"

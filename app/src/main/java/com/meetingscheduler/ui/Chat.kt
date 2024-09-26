@@ -1,5 +1,6 @@
-package com.meetingscheduler
+package com.meetingscheduler.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.meetingscheduler.Model.D_Friend
+import com.meetingscheduler.R
 import com.meetingscheduler.adapters.ChatAdpater
 
 
@@ -61,6 +63,7 @@ class Chat : Fragment() {
 
         )
         btnAdd.setOnClickListener {
+
             db.collection("Disscussion").document().collection("Messages").add(message).addOnSuccessListener {
                 Toast.makeText(requireContext(),"votre groupe a ete bien cree",Toast.LENGTH_LONG).show()
             }.addOnFailureListener {
