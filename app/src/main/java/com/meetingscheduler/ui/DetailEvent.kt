@@ -2,7 +2,6 @@ package com.meetingscheduler.ui
 
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.meetingscheduler.Model.File
 import com.meetingscheduler.R
 import com.meetingscheduler.ViewModels.FileViewModel
 import com.meetingscheduler.adapters.FileAdapter
@@ -72,8 +72,7 @@ class DetailEvent : AppCompatActivity() {
         //Observer  les changement de la liste des fichiers
           fileViewModel.files.observe(this, Observer { files ->
               // Mettre à jour l'adaptateur avec les nouvelles données
-              Toast.makeText(this, "${files.size}", Toast.LENGTH_SHORT).show()
-              fileAdapter.updateFile(files)
+              fileAdapter.updateFile(files.toMutableList())
           })
     }
 }

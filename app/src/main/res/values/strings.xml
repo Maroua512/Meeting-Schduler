@@ -57,6 +57,7 @@
     <string name="description_event">Cour  d\u2019 algo en ligne Chapitre 4</string>
     <string name="titre_event">Algorithemique</string>
     <string name="lbl_heure">10:00</string>
+    <string name="organizer">Organizer</string>
     <string name="bio_user">Etudiant Delegate</string>
     <string name="msg_already_you_have">Already you have an account? </string>
     <string name="msg_confirm_password">Confirm password</string>
