@@ -81,7 +81,7 @@
                             android:src="@drawable/profil_vide" />
 
                         <ImageButton
-                            android:id="@+id/btnEdit"
+                            android:id="@+id/btnEditPhoto"
                             android:layout_width="@dimen/_46pxh"
                             android:layout_height="@dimen/_46pxh"
                             android:layout_gravity="bottom|end"
@@ -146,7 +146,7 @@
                             tools:src="@drawable/img_reply" />
 
                         <TextView
-                            android:id="@+id/btnEditprofile"
+                            android:id="@+id/btnEditPassword"
                             style="@style/txtRobotoregular16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
                         </LinearLayout>
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/switchMaterialToggleNOt"
+                            android:id="@+id/btnNotification"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="end"
@@ -302,7 +302,7 @@
                             tools:ignore="ContentDescription" />
 
                         <TextView
-                            android:id="@+id/txtHistory"
+                            android:id="@+id/deleteAccount"
                             style="@style/txtRobotoregular16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

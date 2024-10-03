@@ -62,7 +62,7 @@ class Register : AppCompatActivity() {
         val validation = ValidateService(
             listOf(
                 email to EmailValidation(), // Validation de l'email
-                password to PasswordValidation(binding.formatPassword), // Validation du mot de passe avec un format spécifique
+                password to PasswordValidation(), // Validation du mot de passe avec un format spécifique
                 confirmPassword to ConfirmPasswordValidator(password) // Validation de la confirmation du mot de passe
             )
         )

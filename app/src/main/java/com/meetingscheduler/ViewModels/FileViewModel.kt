@@ -6,12 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.meetingscheduler.Model.Event
 import com.meetingscheduler.Model.File
 
 class FileViewModel : ViewModel() {
 
     private val _files = MutableLiveData<List<File>>()
     val files: LiveData<List<File>> get() = _files
+
+    private val _event = MutableLiveData<Event>()
+    val event: LiveData<Event> get() = _event
 
     // Intialisation de firebase et firestore
     private val db = Firebase.firestore
@@ -24,7 +28,7 @@ class FileViewModel : ViewModel() {
                 for (doc in result) {
                     val file = File(
                         doc.id,
-                        doc.getString("name").toString()?: "Non nom disponible",
+                        doc.getString("name").toString() ?: "Non nom disponible",
                         doc.getString("type").toString()
                     )
                     listFiles.add(file)
@@ -39,4 +43,5 @@ class FileViewModel : ViewModel() {
             }
 
     }
+
 }

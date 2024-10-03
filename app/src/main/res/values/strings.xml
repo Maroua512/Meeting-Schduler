@@ -12,7 +12,7 @@
     <string name="lbl_username">Username</string>
     <string name="lbl_select_type">Select type</string>
     <string name="lbl_mohamed">Mohamed</string>
-    <string name="msg_edit_profile_information">Edit profile information</string>
+    <string name="msg_edit_profile_information">Update password</string>
     <string name="lbl_resend_email">Resend email</string>
     <string name="lbl_login_now">Login Now</string>
     <string name="lbl_personnel2">Personnel</string>
@@ -38,7 +38,7 @@
     <string name="lbl_menu">Menu</string>
     <string name="lbl_help_support">Help &amp; support</string>
     <string name="lbl_privacy_policy">Privacy Policy</string>
-    <string name="lbl_history">History</string>
+    <string name="lbl_history">Delete Account</string>
     <string name="lbl_contact_us">Contact us</string>
     <string name="lbl_light_mode">Light mode</string>
     <string name="name">Name</string>
@@ -57,6 +57,9 @@
     <string name="description_event">Cour  d\u2019 algo en ligne Chapitre 4</string>
     <string name="titre_event">Algorithemique</string>
     <string name="lbl_heure">10:00</string>
+    <string name="lbl_profile_photo">Profile photo</string>
+    <string name="lbl_camera">Camera</string>
+    <string name="lbl_gallery">Gallery</string>
     <string name="organizer">Organizer</string>
     <string name="bio_user">Etudiant Delegate</string>
     <string name="msg_already_you_have">Already you have an account? </string>
@@ -68,20 +71,28 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lbl_confirm">Confirmer</string>
+    <string name="msg_are_you_sure_you">Are you sure you want to delete your account? Please read how account deletion will affect.
+Deleting your account removes personal information our database. Tour email becomes permanently reserved and same email cannot be re-use to register a new account.</string>
+    <string name="lbl_delete_account">Delete Account</string>
+    <string name="lbl_delete">Delete</string>
     <string name="lbl_cancel">Cancel</string>
     <string name="lbl_titre_detail">Titre</string>
     <string name="lbl_description_event">Description</string>
     <string name="lbl_logo">Meeting Schduler</string>
     <string name="lbl_welcome">Bienvenue dans</string>
+    <string name="old_password">Enter the old password</string>
+    <string name="new_password">Enter a new password</string>
+    <string name="lbl_confirm_password">Confirm password</string>
     <string name="password_format">
-        hh
-        <!-- &#8226; Au moins 12 caractères&#10;
-        &#8226; Au moins deux lettres majuscules&#10;
-        &#8226; Au moins deux lettres minuscules&#10;
-        &#8226; Au moins deux chiffres&#10;
-        &#8226; Au moins deux caractères spéciaux&#10;
-        &#8226; Pas d'espaces ou de caractères blancs-->
-    </string>
+        - Au moins 12 caractères\n
+        - Au moins deux lettres majuscules\n
+        - Au moins deux lettres minuscules\n
+        - Au moins deux chiffres\n
+        - Au moins deux caractères spéciaux (comme "!@#$%^"&amp;*…)\n
+        - Pas d\u2019espaces ou de caractères blancs
+</string>
+
+
 </resources>
 
 

@@ -18,7 +18,7 @@ class FileAdapter(private var files: List<File>) :
         fun bind(file: File) {
             when (file.type_file) {
                 "pdf" -> icon_file.setImageResource(R.drawable.pdf)
-                "word" -> icon_file.setImageResource(R.drawable.pdf)
+                "word" -> icon_file.setImageResource(R.drawable.file_texte)
                 "xls" -> icon_file.setImageResource(R.drawable.pdf)
                 else -> icon_file.setImageResource(R.drawable.pdf)
             }

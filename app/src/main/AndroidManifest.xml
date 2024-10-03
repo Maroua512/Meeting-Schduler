@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -33,15 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.discussion"
-            android:exported="false" />
+
         <activity
             android:name=".etudiant_chat"
             android:exported="false" />
-        <activity
-            android:name=".ui.Notifications"
-            android:exported="false" />
+
         <activity
             android:name=".discussion_priver"
             android:exported="false" />

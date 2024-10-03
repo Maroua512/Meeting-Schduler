@@ -11,6 +11,7 @@ class ValidateService(private val validators : List<Pair<TextInputLayout, Valida
             val result = validator.validate(input)
            if(!result.isValid){
                inputLayout.error = result.errorMessage
+               inputLayout.isErrorEnabled = true
               isvalid = false
            }
             else{

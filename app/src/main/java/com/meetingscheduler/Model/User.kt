@@ -5,11 +5,11 @@ import android.os.Parcel
 
 data class User(
     var id_user: String,
-    val nom: String,
-    val prenom: String,
-    val email: String,
-    val role: String,
-    val type_user: String
+    var nom: String,
+    var prenom: String,
+    var email: String,
+    var role: String,
+    var type_user: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",

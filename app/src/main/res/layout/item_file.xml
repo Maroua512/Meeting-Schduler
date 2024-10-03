@@ -2,17 +2,18 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:maxWidth="300dp"
-    android:padding="@dimen/_16pxh"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:elevation="8dp"
-    app:cardCornerRadius="@dimen/_12sp">
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="4dp"
+    android:elevation="4dp"
+    android:maxWidth="200dp"
+    android:padding="@dimen/_16pxh"
+    app:cardCornerRadius="@dimen/_8sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <!-- Icône du fichier -->
         <ImageView
@@ -21,25 +22,30 @@
             android:layout_height="@dimen/_80pxh"
             android:layout_margin="@dimen/_16pxh"
             android:contentDescription="TODO"
-            android:src="@drawable/pdf"
             android:foregroundGravity="center"
+            android:src="@drawable/pdf"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Nom du fichier -->
         <TextView
             android:id="@+id/file_name"
-            android:layout_width="wrap_content"
-            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16pxh"
-            android:gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins"
+            android:gravity="center_vertical"
+            android:maxLines="1"
             android:text="Notes"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.008"
             app:layout_constraintStart_toEndOf="@id/file_icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.506" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

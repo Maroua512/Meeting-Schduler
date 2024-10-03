@@ -12,10 +12,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.meetingscheduler.Model.Day
+
+import com.meetingscheduler.Utils.DatabseHelper
 import com.meetingscheduler.ViewModels.CalendarviewModel
 import com.meetingscheduler.adapters.CalendarAdapter
 import com.meetingscheduler.adapters.EventAdapter
 import com.meetingscheduler.databinding.FragmentHomeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 
@@ -32,6 +37,8 @@ class Home : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         calendarViewModel = ViewModelProvider(this).get(CalendarviewModel::class.java)
+
+
 
         // Configure the RecyclerView
 

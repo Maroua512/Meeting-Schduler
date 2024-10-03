@@ -42,7 +42,7 @@ class EventAdapter(private var events:List<Event>):RecyclerView.Adapter<EventAda
             }
             itemView.setOnClickListener {
                 val intent = Intent(it.context, DetailEvent::class.java)
-                intent.putExtra("id_event", event.id_event)
+                intent.putExtra("event", event)
                 it.context.startActivity(intent)
 
 

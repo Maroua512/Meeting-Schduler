@@ -26,12 +26,12 @@ class EmailValidation : Validator {
 }
 
 //Validation d'un Password saisie
-class PasswordValidation(private val formatText: TextView) : Validator {
+class PasswordValidation : Validator {
     override fun validate(input: String): ValidationResult {
         return if (input.isEmpty()) {
             ValidationResult(false, "Passwrd  is  required  !")
         } else if (isCorrectPassword(input)) {
-            formatText.setTextColor(Color.RED)
+
             ValidationResult(false, "Invalid  password format ! ")
         } else {
             ValidationResult(true)
