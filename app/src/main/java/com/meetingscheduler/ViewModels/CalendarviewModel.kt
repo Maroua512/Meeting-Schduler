@@ -4,17 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.meetingscheduler.Model.Day
 import com.meetingscheduler.Model.Event
-import java.text.SimpleDateFormat
+import com.meetingscheduler.app.utils.Utils
+import com.meetingscheduler.app.utils.Utils.Companion.getHeur
+import com.meetingscheduler.app.utils.Utils.Companion.getJour
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 class CalendarviewModel : ViewModel() {
     // Intailisation de Firebase ,Firestore et Auth
@@ -116,7 +114,6 @@ class CalendarviewModel : ViewModel() {
 
     }
 
-
     fun getEvents(callback: (MutableList<Event>) -> Unit) {
         val events = mutableListOf<Event>()
         db.collection("Event")
@@ -137,7 +134,7 @@ class CalendarviewModel : ViewModel() {
                             // Vérifier si le timestamp n'est pas null
                             if (date != null) {
                                 // Récupère une date si nécessaire
-                                event.jour_event = getJour(date)
+                                event.jour_event = Utils.getJour(date)
                                 event.heure_event = getHeur(date)
                                 // Tu peux ensuite utiliser cet objet `event`
                             } else {
@@ -159,14 +156,5 @@ class CalendarviewModel : ViewModel() {
             }
     }
 
-    // Fonction pour convertir la date en chaîne de caractères
-    fun getJour(date: Date): String {
-        return SimpleDateFormat("dd/MM/yy", Locale.getDefault()).format(date)
-    }
-
-    fun getHeur(date: Date): String {
-        return SimpleDateFormat("HH:MM", Locale.getDefault()).format(date)
-
-    }
 
 }

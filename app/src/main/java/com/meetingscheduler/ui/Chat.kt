@@ -1,82 +1,92 @@
 package com.meetingscheduler.ui
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.meetingscheduler.Model.D_Friend
+import com.meetingscheduler.Model.Discussion
 import com.meetingscheduler.R
+import com.meetingscheduler.ViewModels.ListOfDiscussions
+import com.meetingscheduler.ViewModels.ListOfDiscussionsFactory
+import com.meetingscheduler.ViewModels.UserViewModel
 import com.meetingscheduler.adapters.ChatAdpater
-
+import kotlinx.coroutines.launch
 
 class Chat : Fragment() {
-    lateinit var list_chat : RecyclerView
-    lateinit var chatAdapter: ChatAdpater
-    lateinit var btnAdd:ImageView
+    //Firebase instances for firestore,Authentication
     val db = Firebase.firestore
     val auth = Firebase.auth
-    val curentUser= auth.currentUser
+    val curentUser = auth.currentUser
+
+    //Adapter ,ViewModel
+    lateinit var chatAdapter: ChatAdpater
+    private lateinit var listDiscussionViewModel: ListOfDiscussions
+    private lateinit var userViewModel: UserViewModel
+
+    //UI components
+    private lateinit var rvDiscussion: RecyclerView
+    private lateinit var btnAdd: ImageView
+    private lateinit var txtEnseignants: TextView
+
+    //MutableList to hold discussions
+    val discussions = mutableListOf<Discussion>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-       val view = inflater.inflate(R.layout.activity_etudiant_chat, container, false)
-        list_chat = view.findViewById(R.id.rvFriend)
-        btnAdd =view.findViewById(R.id.btnAdd)
-        val discussions  = mutableListOf<D_Friend>()
+        val view = inflater.inflate(R.layout.activity_etudiant_chat, container, false)
+        //Intailize ViewModel
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        listDiscussionViewModel = ViewModelProvider(
+            this,
+            ListOfDiscussionsFactory(userViewModel)
+        ).get(ListOfDiscussions::class.java)
+        initComponents(view)
+        //Intialize Adapter
         chatAdapter = ChatAdpater()
-        if(curentUser!=null){
-            db.collection("User_Disscussion").whereEqualTo("id_user",curentUser.uid).get().addOnSuccessListener { result->
-               for (doc in result){
-                   db.collection("Disscussion").document(doc.id).get().addOnSuccessListener {
-                       val discussion = result.toObjects(D_Friend::class.java)
-                       if(discussion!=null){
-                           
-                           //discussions.add(discussion)
-                       }
+        //Set up recyclerView
 
-                   }.addOnFailureListener {
-
-                   }
-               }
-
-            }.addOnFailureListener {
-
+        rvDiscussion.layoutManager = LinearLayoutManager(requireContext())
+        rvDiscussion.adapter = chatAdapter
+        chatAdapter.items = discussions
+        //Load discussions for the current user
+        curentUser.let {
+            lifecycleScope.launch {
+                listDiscussionViewModel.getDiscussions(it!!.uid)
+                //Observe changes in discussions from viewModel
+                listDiscussionViewModel.discussions.observe(
+                    viewLifecycleOwner,
+                    Observer { discussions ->
+                        // Update the chat adapter with new discussions
+                        Log.d("Chat", "New discussions: ${discussions.size}")
+                        chatAdapter.updateDiscussions(discussions.toMutableList())
+                    })
             }
         }
-
-
-        list_chat.layoutManager = LinearLayoutManager(requireContext())
-        list_chat.adapter = chatAdapter
-        chatAdapter.items =discussions
-        val message = hashMapOf<String,Any>(
-
-        )
+        // Set click listener for the add button
         btnAdd.setOnClickListener {
 
-            db.collection("Disscussion").document().collection("Messages").add(message).addOnSuccessListener {
-                Toast.makeText(requireContext(),"votre groupe a ete bien cree",Toast.LENGTH_LONG).show()
-            }.addOnFailureListener {
-                Toast.makeText(requireContext(),"Erreur lors de creation d'un nouveau groupe",Toast.LENGTH_LONG).show()
-            }
         }
-
-
-
-
-
-
         return view
+    }
+
+    private fun initComponents(view: View) {
+        txtEnseignants = view.findViewById(R.id.txtEnseignants)
+        rvDiscussion = view.findViewById(R.id.rvDiscussion)
+        btnAdd = view.findViewById(R.id.btnAdd)
     }
 
 

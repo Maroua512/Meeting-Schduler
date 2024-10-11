@@ -63,7 +63,7 @@ class Register : AppCompatActivity() {
             listOf(
                 email to EmailValidation(), // Validation de l'email
                 password to PasswordValidation(), // Validation du mot de passe avec un format spécifique
-                confirmPassword to ConfirmPasswordValidator(password) // Validation de la confirmation du mot de passe
+                confirmPassword to ConfirmPasswordValidator(password,binding.formatPassword ) // Validation de la confirmation du mot de passe
             )
         )
 

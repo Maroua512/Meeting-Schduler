@@ -17,6 +17,7 @@ import com.meetingscheduler.Utils.DatabseHelper
 import com.meetingscheduler.ViewModels.CalendarviewModel
 import com.meetingscheduler.adapters.CalendarAdapter
 import com.meetingscheduler.adapters.EventAdapter
+import com.meetingscheduler.app.utils.Utils.Companion.getJour
 import com.meetingscheduler.databinding.FragmentHomeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,8 +38,6 @@ class Home : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         calendarViewModel = ViewModelProvider(this).get(CalendarviewModel::class.java)
-
-
 
         // Configure the RecyclerView
 
@@ -74,7 +73,7 @@ class Home : Fragment() {
             // Mettre à jour les événements du jour sélectionné
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.DAY_OF_MONTH, day.dayNumber)
-            val currentDayString = calendarViewModel.getJour(calendar.time)
+            val currentDayString = getJour(calendar.time)
 
             val eventsForDay = calendarViewModel.events.value?.filter { event ->
                 Toast.makeText(requireContext(), "Clic1 sur le jour : ${event.jour_event}", Toast.LENGTH_SHORT).show()

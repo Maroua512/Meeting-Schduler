@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.meetingscheduler.Model.D_Friend
+import com.meetingscheduler.Model.Discussion
 import com.meetingscheduler.Model.Disscusion_user
 import com.meetingscheduler.adapters.ChatAdpater
 import com.meetingscheduler.ui.Chat
@@ -79,7 +80,7 @@ class Chat_teatcher : Fragment() {
         synchronizeDiscussions()
        return view
     }
-    suspend fun getDiscussionsForCurrentUser(): MutableList<D_Friend> {
+    suspend fun getDiscussionsForCurrentUser(): MutableList<Discussion> {
         val membreDiscussions = db.collection("Concerner_Discussion_Prestataire")
             .whereEqualTo("id_user1", currentUser!!.uid)
             .whereEqualTo("type_discussion","prestataire")
@@ -109,7 +110,7 @@ class Chat_teatcher : Fragment() {
             }
         }
 
-        val discussions = mutableListOf<D_Friend>()
+        val discussions = mutableListOf<Discussion>()
         for (discussionUser in discussionUsers) {
             try {
                 val discussionObj = db.collection("Disscussion")
@@ -128,14 +129,14 @@ class Chat_teatcher : Fragment() {
                 val lastMessageText = lastMessage?.getString("texte") ?: ""
                 val lastMessageTimestamp = lastMessage?.getDate("timestamp")?.time ?: 0L
 
-                val discussion = D_Friend(
-                    id_discussion = discussionObj.id,
-                    lastMsg = lastMessageText,
-                    name = getNames(discussionUser.id_user),
-                    timestamp = if (lastMessageTimestamp > 0) {
+                val discussion = Discussion(
+                     discussionObj.id,
+                   lastMessageText,
+                    getNames(discussionUser.id_user),
+                    if (lastMessageTimestamp > 0) {
                         SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(Date(lastMessageTimestamp))
                     } else "",
-                    image = getImage(discussionUser.id_user)
+                 " getImage(discussionUser.id_user)"
                 )
                 discussions.add(discussion)
 
@@ -154,7 +155,7 @@ class Chat_teatcher : Fragment() {
             // Setup listeners for real-time updates
             friends.forEach { discussion ->
                 val listenerRegistration = db.collection("Disscussion")
-                    .document(discussion.id_discussion!!)
+                    .document(discussion.id_disscussion)
                     .collection("Messages")
                     .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
                     .limit(1)
@@ -167,8 +168,8 @@ class Chat_teatcher : Fragment() {
                         if (snapshot != null && !snapshot.isEmpty) {
                             val lastMessageDoc = snapshot.documents[0]
                             val lastMessage = lastMessageDoc.getString("texte") ?: ""
-                            discussion.lastMsg = lastMessage
-                            discussion.timestamp = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                            discussion.lastMessage = lastMessage
+                            discussion.disHour = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
                                 .format(lastMessageDoc.getDate("timestamp") ?: Date())
 
                             chatAdapter.notifyDataSetChanged()
@@ -206,66 +207,5 @@ class Chat_teatcher : Fragment() {
         }
     }
 
-   /* private  fun showDialogLogout(){
-        val dialog  = Dialog(requireContext())
-        dialog.setContentView(R.layout.create_groupe_form)
-        dialog.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
-
-        val cancelButton = dialog.findViewById<AppCompatButton>(R.id.btnNo)
-        val confirmButton = dialog.findViewById<AppCompatButton>(R.id.btnYes)
-
-        cancelButton.setOnClickListener {
-            // Action à effectuer lorsque l'utilisateur clique sur le bouton d'annulation
-            dialog.dismiss() // Fermer la boîte de dialogue
-        }
-
-        // Définir un écouteur de clic sur le bouton de confirmation
-        confirmButton.setOnClickListener {
-            // Action à effectuer lorsque l'utilisateur clique sur le bouton de confirmation
-
-
-            requireActivity().finish()
-            // Fermer la boîte de dialogue après avoir effectué l'action
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
-  private fun showDialogPictures(onImageSelected: () -> Unit) {
-        val dialog1  = Dialog(requireContext())
-        dialog1.setContentView(R.layout.activity_message_profile_photo)
-        dialog1.window?.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog1.window?.setBackgroundDrawableResource(R.drawable.dialog_bg)
-        onImageSelectedCallback = onImageSelected
-        //Intialisation des variables
-        camera  = dialog1.findViewById(R.id.camera)
-        gallery = dialog1.findViewById(R.id.picture)
-
-        camera.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(Manifest.permission.CAMERA),
-                    PERMISSION_REQUEST_CODE
-                )
-            } else {
-                dispatchTakePictureIntent()
-
-            }
-            dialog1.dismiss()
-
-        }
-        gallery.setOnClickListener {
-            imgChoisit.launch("image")
-
-            dialog1.dismiss()
-        }
-        dialog1.show()
-    }
-
-    */
 
 }

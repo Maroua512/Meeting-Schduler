@@ -4,9 +4,9 @@
     android:color="#FFFFFF"
     />
     <corners android:radius="@dimen/_20pxh"/>
-    <padding android:right="@dimen/_30pxh"
-        android:left="@dimen/_24pxh"
-        android:bottom="@dimen/_24pxh"
-        android:top="@dimen/_24pxh"/>
+    <padding android:right="@dimen/_16pxh"
+        android:left="@dimen/_16pxh"
+        android:bottom="@dimen/_16pxh"
+        android:top="@dimen/_16pxh"/>
 
 </shape>

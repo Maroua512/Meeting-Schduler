@@ -1,7 +1,7 @@
 package com.meetingscheduler.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -9,96 +9,117 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.meetingscheduler.Model.D_Message
+import com.meetingscheduler.Model.Discussion
+import com.meetingscheduler.Model.Message
 import com.meetingscheduler.R
 import com.meetingscheduler.ViewModels.DisscussionViewModel
 import com.meetingscheduler.adapters.DiscutionAdapter
-
-
 class Discussion : AppCompatActivity() {
-    lateinit var discutionViewModel: DisscussionViewModel
-    lateinit var discutionAdapter: DiscutionAdapter
-    private lateinit var back: ImageView
-    lateinit var fabSendMessage: FloatingActionButton
-    lateinit var editMessage: EditText
-    lateinit var rvChatList: RecyclerView
-    lateinit var discussionName: TextView
-    lateinit var discussionImage: ImageView
-    private var listenerRegistration: ListenerRegistration? = null
+    //Firebase Firestore and Authentification instances
     val db = Firebase.firestore
-    private var messages = mutableListOf<D_Message>()
+    val auth = Firebase.auth
+    val currentUser = auth.currentUser
+    //UI components
+    private lateinit var  discussionViewModel: DisscussionViewModel
+    private lateinit var discussionAdapter: DiscutionAdapter
+    private lateinit var back: ImageView
+    private lateinit var fabSendMessage: FloatingActionButton
+    private lateinit var editMessage: EditText
+    private lateinit var chatRecyclerView: RecyclerView
+    private lateinit var discussionName: TextView
+    private lateinit var discussionImage: ImageView
+    //List to hold chat messages
+    private var messages = mutableListOf<Message>()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discussion)
+        //Intialize UI components
+        initUIComponents()
 
+        //Set up the viewModel  for handling messages
+        setupViewModel()
+
+        //Set up RecylerView and its adapter for displaying messages
+        setupRecyclerView()
+
+        //Handle back button action
+        handleBackButton()
+
+        // Handle send message action
+        handleSendMessageAction()
+
+    }
+
+    private fun initUIComponents() {
         back = findViewById(R.id.back)
         fabSendMessage = findViewById(R.id.fabSendMessage)
         editMessage = findViewById(R.id.editMessage)
-        rvChatList = findViewById(R.id.rvChatList)
+        chatRecyclerView = findViewById(R.id.rvChatList)
         discussionImage = findViewById(R.id.imageDiscussion)
         discussionName = findViewById(R.id.nameFriend)
+    }
+    /**
+     * Set up the ViewModel for managing message data.
+     */
+    private fun setupViewModel() {
+        discussionViewModel = ViewModelProvider(this).get(DisscussionViewModel::class.java)
 
-        discutionViewModel = ViewModelProvider(this).get(DisscussionViewModel::class.java)
-        //Intialisation de  l'adapter
-        discutionAdapter = DiscutionAdapter( Firebase.auth.currentUser!!.uid)
-        //Configuration de l'adapter
-       rvChatList.apply {
+        // Get discussion ID from intent and load messages
+        val discussion = intent.getParcelableExtra<Discussion>("discussion")
+        discussionViewModel.getMessages(discussion!!.id_disscussion)
+        discussionName.text = discussion.disName
+        Glide.with(this).load(discussion.disImage).placeholder(R.drawable.profil_vide).into(discussionImage)
+
+        // Observe message list updates
+        discussionViewModel.messages.observe(this) { messages ->
+            discussionAdapter.updateMessages(messages.toMutableList())
+        }
+    }
+    /**
+     * Set up the RecyclerView and adapter for displaying chat messages.
+     */
+    private fun setupRecyclerView() {
+        discussionAdapter = DiscutionAdapter(currentUser!!.uid)
+        chatRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@Discussion)
-            adapter = discutionAdapter
+            adapter = discussionAdapter
         }
 
+        // Set the initial empty message list
+        discussionAdapter.items = messages
+    }
+    /**
+     * Handle the back button action to close the activity.
+     */
+    private fun handleBackButton() {
         back.setOnClickListener {
             finish()
         }
-        // Ajouter un Snapshot Listener pour écouter les nouvelles données
-        listenerRegistration =
-            db.collection("Disscussion").document("discussionId").collection("Messages")
-                .orderBy("timestamp")
-                .addSnapshotListener { snapshot, e ->
-                    if (e != null) {
-                        Log.e("TAG", "Erreur de chargement des messages", e)
-                        return@addSnapshotListener
-                    }
+    }
 
-                    if (snapshot != null) {
-                        updateMessages(snapshot)
-                    }
-                }
-        fabSendMessage.setOnClickListener {
-            val message = editMessage.text.toString()
-            if (message.isNotEmpty()) {
-                discutionViewModel.addMessage("id",message)
+    /**
+     * Handle the send message action when the floating button is clicked.
+     */
+    private fun handleSendMessageAction() {
+        back.setOnClickListener {
+            val messageText = editMessage.text.toString()
+
+            if (messageText.isNotEmpty()) {
+                val discussionId = intent.getStringExtra("id_discussion").toString()
+
+                // Send message via ViewModel
+                discussionViewModel.addMessage(discussionId, messageText)
+
+                // Clear input field after sending
                 editMessage.setText("")
-
             }
         }
-    }
-
-    private fun updateMessages(snapshot: QuerySnapshot) {
-        messages = snapshot.map { document ->
-            D_Message(
-                sender = document.getString("sender").toString(),
-                texte = document.getString("texte").toString(),
-                timestamp = document.getDate("timestamp")!!.time
-            )
-        }.sortedBy { it.timestamp }.toMutableList()
-
-        discutionAdapter.items = messages
-        discutionAdapter.notifyDataSetChanged()
-        rvChatList.scrollToPosition(messages.size - 1)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Supprimer le listener pour éviter les fuites de mémoire
-        listenerRegistration?.remove()
     }
 }

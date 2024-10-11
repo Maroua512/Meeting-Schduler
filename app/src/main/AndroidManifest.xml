@@ -26,6 +26,8 @@
         <activity
             android:name=".ui.Authentification"
             android:exported="false" />
+        <activity android:name=".ui.Discussion"
+            android:exported="false" />
         <activity
             android:name=".ui.splash_screen"
             android:exported="true">

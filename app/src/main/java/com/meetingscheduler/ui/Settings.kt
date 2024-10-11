@@ -58,6 +58,7 @@ class Settings : Fragment() {
     lateinit var btnDeleteAccount: TextView
     lateinit var imageProfile: ShapeableImageView
     lateinit var username: TextView
+    lateinit var formatPassword: TextView
 
     // Dialog components
     private lateinit var oldPassword: TextInputLayout
@@ -87,17 +88,14 @@ class Settings : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
 
         // Initialize UI components
         initComponents(view)
 
-        // Set up click listener for the editing  profile photo
+        // Set up click listener for various actions in settings
         btnEditPhoto.setOnClickListener {
             showDialogPicture {
                 if (chosenImageUri != null) {
@@ -112,29 +110,22 @@ class Settings : Fragment() {
         }
 
         // Set up click listener for the logout button
-        btnNotification.setOnClickListener {
-
-        }
-        btnEditPassword.setOnClickListener {
-            showChangePasswordDialog()
-        }
+        btnNotification.setOnClickListener {}
+        btnEditPassword.setOnClickListener { showChangePasswordDialog() }
 
         // Set up click listener for the logout button
-        btnDeleteAccount.setOnClickListener {
-            showDeleteDialog()
-        }
+        btnDeleteAccount.setOnClickListener { showDeleteDialog() }
         // Set up click listener for the logout button
-        btnChangeLaunguage.setOnClickListener {
-            showDialogChangeLanguage()
-        }
+        btnChangeLaunguage.setOnClickListener { showDialogChangeLanguage() }
 
         // Set up click listener for the logout button
-        btnlogout.setOnClickListener {
-            showDialogLogout()
-        }
+        btnlogout.setOnClickListener { showDialogLogout() }
         return view
     }
 
+    /**
+     * Show a dialog to change password
+     */
     private fun showChangePasswordDialog() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.update_password)
@@ -142,17 +133,21 @@ class Settings : Fragment() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        dialog.window!!.setBackgroundDrawableResource(R.drawable.dialog_bg)
+        dialog.window!!.setWindowAnimations(R.style.DialogAnimation)
+        dialog.window!!.setBackgroundDrawableResource(R.drawable.dialog_bg1)
         initDialog(dialog)
+        // Set up click listener for the confirm button
         confirmBtn.setOnClickListener {
+
             if (VerifierChamps(oldPassword, newPassword, confirmPassword)) {
+                Toast.makeText(requireContext(),"OK",Toast.LENGTH_LONG).show()
                 progressDialog = Utils.showProgressBar(requireActivity(), "Changement en cours")
                 changePassword(
                     oldPassword.editText?.text.toString(),
                     newPassword.editText?.text.toString()
                 )
             }
-            dialog.dismiss()
+
         }
         cancelBtn.setOnClickListener {
             dialog.dismiss()
@@ -160,49 +155,9 @@ class Settings : Fragment() {
         dialog.show()
     }
 
-    private fun changePassword(oldPassword: String, newPassword: String) {
-
-        val credentials =
-            EmailAuthProvider.getCredential(curentUser!!.email.toString(), oldPassword)
-        curentUser.reauthenticate(credentials).addOnSuccessListener {
-            curentUser.updatePassword(newPassword).addOnSuccessListener {
-                Utils.hideProgressBar(progressDialog)
-                Toast.makeText(
-                    requireContext(),
-                    "Mot de passe modifié avec succès",
-                    Toast.LENGTH_LONG
-                ).show()
-            }.addOnFailureListener {
-                Toast.makeText(
-                    requireContext(),
-                    "Erreur lors de modification du mot de passe",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }.addOnFailureListener {
-            Toast.makeText(
-                requireContext(),
-                "l'anncienne mot de passe est inccorect",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    private fun setLanguage(selectedLocale: String) {
-        val newLocale = Locale(selectedLocale)
-        resources.configuration.setLocale(newLocale)
-        resources.updateConfiguration(resources.configuration, resources.displayMetrics)
-
-        val defaultLocale =
-            Locale.getDefault() // si on met juste recreate sans tous ca va bloker( boucle infifni)
-        /*if (defaultLocale.language != selectedLocale){
-            Locale.setDefault(newLocale)
-            PreferenceManager.setSelectedLanguage(requireActivity(), selectedLocale)
-            (requireActivity().application as MyApp).setAppLocale(selectedLocale)
-            (activity as? LanguageChangeListener)?.onLanguageChanged()
-            Toast.makeText(context, "Change language to $selectedLocale", Toast.LENGTH_SHORT).show() // Enregistrer la langue sélectionnée dans les préférences partagées
-        }*/
-    }
+    /**
+     * Show a dialog to change language
+     */
 
     private fun showDialogChangeLanguage() {
         val dialogBinding = layoutInflater.inflate(R.layout.message_langage, null)
@@ -246,27 +201,52 @@ class Settings : Fragment() {
         )
         dialog.window!!.setBackgroundDrawableResource(R.drawable.dialog_bg)
         // Initialize buttons for the cancel and confirm options
-        val cancel = dialog.findViewById<LinearLayout>(R.id.btncancel)
-        val delete = dialog.findViewById<LinearLayout>(R.id.btnDelete)
+        val cancel = dialog.findViewById<AppCompatButton>(R.id.btncancel)
+        val delete = dialog.findViewById<AppCompatButton>(R.id.btnDelete)
+        val oldPassword = dialog.findViewById<TextInputLayout>(R.id.oldPassword)
 
         cancel.setOnClickListener {
             dialog.dismiss()
         }
         delete.setOnClickListener {
-            auth.currentUser!!.delete().addOnSuccessListener {
-                Toast.makeText(
-                    requireContext(),
-                    "Votre compte a ete supprimer avec success",
-                    Toast.LENGTH_LONG
-                ).show()
-            }.addOnFailureListener {
-                Toast.makeText(
-                    requireContext(),
-                    "Erreur lors de suppression de votre compte",
-                    Toast.LENGTH_LONG
-                ).show()
+            if (oldPassword.editText?.text.toString().isEmpty()) {
+                oldPassword.error = "Veuillez entrer votre mot de passe actuel"
+                return@setOnClickListener
             }
-            dialog.dismiss()
+            val credentials = EmailAuthProvider.getCredential(
+                curentUser!!.email.toString(),
+                oldPassword.editText?.text.toString()
+            )
+            auth.currentUser!!.reauthenticate(credentials).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    auth.currentUser!!.delete().addOnSuccessListener {
+                        Toast.makeText(
+                            requireContext(),
+                            "Votre compte a ete supprimer avec success",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        dialog.dismiss()
+                        Intent(requireContext(), Authentification::class.java).also {
+                            startActivity(it)
+                        }
+                    }.addOnFailureListener { e ->
+                        Toast.makeText(
+                            requireContext(),
+                            "Erreur lors de suppression de votre compte",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        Log.e("Delete", "Erreur ${e.message}")
+                    }
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Votre mote de passe saisie est incorrect !",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            }
+
 
         }
         dialog.show()
@@ -318,30 +298,6 @@ class Settings : Fragment() {
     }
 
     /**
-     * Dispatches  an  intent  to capture  an image  using  the camera
-     */
-    private fun disptachTakenPicture() {
-        //Capturer l'image avec la camera
-        val takenPictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        //Lancer l'application de la camera et attendre une resultat
-        startActivityForResult(takenPictureIntent, REQUEST_IMAGE_CAPTURE)
-    }
-
-    /**
-     * Handle the result  of an activity(camera  or  gallery) .
-     */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            imageProfile.setImageBitmap(imageBitmap) // Display the captured image
-            ischanged = true
-            chosenImageUri = data.data  // Get  the  Uri for uploading
-
-        }
-    }
-
-    /**
      * Show  a  logout confirmation dialog .
      */
     private fun showDialogLogout() {
@@ -377,27 +333,32 @@ class Settings : Fragment() {
     }
 
     /**
-     * Initialize UI commponents.
+     * Dispatches  an  intent  to capture  an image  using  the camera
      */
-    private fun initComponents(view: View) {
-        btnlogout = view.findViewById(R.id.btnLogout)
-        btnEditPhoto = view.findViewById(R.id.btnEditPhoto)
-        imageProfile = view.findViewById(R.id.imageProfile)
-        username = view.findViewById(R.id.username)
-        btnEditPassword = view.findViewById(R.id.btnEditPassword)
-        btnNotification = view.findViewById(R.id.btnNotification)
-        btnChangeLaunguage = view.findViewById(R.id.txtLanguage)
-        btnDeleteAccount = view.findViewById(R.id.deleteAccount)
+    private fun disptachTakenPicture() {
+        //Capturer l'image avec la camera
+        val takenPictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        //Lancer l'application de la camera et attendre une resultat
+        startActivityForResult(takenPictureIntent, REQUEST_IMAGE_CAPTURE)
     }
 
-    private fun initDialog(dialog: Dialog) {
-        oldPassword = dialog.findViewById(R.id.oldPassword)
-        newPassword = dialog.findViewById(R.id.newPassword)
-        confirmPassword = dialog.findViewById(R.id.confirmPassword)
-        cancelBtn = dialog.findViewById(R.id.btnCancel)
-        confirmBtn = dialog.findViewById(R.id.btnConfirm)
+    /**
+     * Handle the result  of an activity(camera  or  gallery) .
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            imageProfile.setImageBitmap(imageBitmap) // Display the captured image
+            ischanged = true
+            chosenImageUri = data.data  // Get  the  Uri for uploading
+
+        }
     }
 
+    /**
+     *  Uploads the chosen image to firebase
+     */
     private fun uploadImageToFirebase(id: String) {
         // Check if an image has been selected
         if (chosenImageUri == null) {
@@ -461,23 +422,108 @@ class Settings : Fragment() {
         }
     }
 
+    /**
+     * Handle the password change by reauthentificating and  updating the password in firebase
+     */
+    private fun changePassword(oldPassword: String, newPassword: String) {
+
+        val credentials =
+            EmailAuthProvider.getCredential(curentUser!!.email.toString(), oldPassword)
+        curentUser.reauthenticate(credentials).addOnSuccessListener {
+            curentUser.updatePassword(newPassword).addOnSuccessListener {
+                Utils.hideProgressBar(progressDialog)
+                Toast.makeText(
+                    requireContext(),
+                    "Mot de passe modifié avec succès",
+                    Toast.LENGTH_LONG
+                ).show()
+            }.addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Erreur lors de modification du mot de passe",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(
+                requireContext(),
+                "l'anncienne mot de passe est inccorect",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    /**
+     * Sets the language of the application based on user selection
+     */
+    private fun setLanguage(selectedLocale: String) {
+        val newLocale = Locale(selectedLocale)
+        resources.configuration.setLocale(newLocale)
+        resources.updateConfiguration(resources.configuration, resources.displayMetrics)
+
+        val defaultLocale =
+            Locale.getDefault() // si on met juste recreate sans tous ca va bloker( boucle infifni)
+        /*if (defaultLocale.language != selectedLocale){
+            Locale.setDefault(newLocale)
+            PreferenceManager.setSelectedLanguage(requireActivity(), selectedLocale)
+            (requireActivity().application as MyApp).setAppLocale(selectedLocale)
+            (activity as? LanguageChangeListener)?.onLanguageChanged()
+            Toast.makeText(context, "Change language to $selectedLocale", Toast.LENGTH_SHORT).show() // Enregistrer la langue sélectionnée dans les préférences partagées
+        }*/
+    }
+
+    /**
+     * Verifies if the password fields are correctly filled out
+     */
     private fun VerifierChamps(
         oldPassword: TextInputLayout,
         newPassword: TextInputLayout,
         confirmPassword: TextInputLayout
     ): Boolean {
+        Log.d("Verifier","yes")
         val validator = ValidateService(
             listOf(
                 oldPassword to PasswordValidation(),
                 newPassword to PasswordValidation(),
-                confirmPassword to ConfirmPasswordValidator(newPassword)
+                confirmPassword to ConfirmPasswordValidator(newPassword,formatPassword)
             )
         )
-        if (validator.validete()) {
-            return true
-        }
-        return false
+        Log.d("Verifier","${validator.validete()}")
+        oldPassword.isErrorEnabled = false
+        newPassword.isErrorEnabled = false
+        confirmPassword.isErrorEnabled = false
+        formatPassword.setTextColor(Color.GREEN)
+        return validator.validete()
     }
+
+    /**
+     * Initialize UI components.
+     */
+    private fun initComponents(view: View) {
+        btnlogout = view.findViewById(R.id.btnLogout)
+        btnEditPhoto = view.findViewById(R.id.btnEditPhoto)
+        imageProfile = view.findViewById(R.id.imageProfile)
+        username = view.findViewById(R.id.username)
+        btnEditPassword = view.findViewById(R.id.btnEditPassword)
+        btnNotification = view.findViewById(R.id.btnNotification)
+        btnChangeLaunguage = view.findViewById(R.id.txtLanguage)
+        btnDeleteAccount = view.findViewById(R.id.deleteAccount)
+
+    }
+
+    /**
+     * Intialisze Dialog Of change password components
+     */
+    private fun initDialog(dialog: Dialog) {
+        formatPassword = dialog.findViewById(R.id.formatPassword)
+        oldPassword = dialog.findViewById(R.id.oldPassword)
+        newPassword = dialog.findViewById(R.id.newPassword)
+        confirmPassword = dialog.findViewById(R.id.confirmPassword)
+        cancelBtn = dialog.findViewById(R.id.btnCancel)
+        confirmBtn = dialog.findViewById(R.id.btnConfirm)
+    }
+
+
 }
 
 

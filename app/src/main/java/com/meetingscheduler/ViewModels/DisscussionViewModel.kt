@@ -6,31 +6,62 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.meetingscheduler.Model.D_Message
+import com.meetingscheduler.Model.Message
+import com.meetingscheduler.app.utils.Utils.Companion.getHeur
 
 class DisscussionViewModel : ViewModel() {
     //Intialiser Firebase ,Firestore , Auth
     private val auth = Firebase.auth
     private val db = Firebase.firestore
     private val currentUser = auth.currentUser
-    private var listenerRegistration : ListenerRegistration? =null
+    private var listenerRegistration: ListenerRegistration? = null
 
     //Live data  pour  la  liste  des  messages
-    private val _messages = MutableLiveData<List<D_Message>>()
-    val messages: LiveData<List<D_Message>> = _messages
-    private val liste_messages = mutableListOf<D_Message>()
+    private val _messages = MutableLiveData<List<Message>>()
+    val messages: LiveData<List<Message>> = _messages
+    private var liste_messages = mutableListOf<Message>()
 
-    // fonction pour recuperer les messages
+    /**
+     * Get Messages  of  this disscussion
+     */
     fun getMessages(id: String) {
-
+        listenerRegistration =
+            db.collection("Disscussion").document(id).collection("Messages").orderBy("time")
+                .addSnapshotListener { snapshot, e ->
+                    if (e != null) {
+                        Log.d("Disscussion", "Erreur de chargement des messages")
+                        return@addSnapshotListener
+                    }
+                    if (snapshot != null) {
+                        updateMessages(snapshot)
+                    }
+                }
     }
 
-    // fonction pour ajouter  un message
+    /**
+     * Update Messages  of  this disscussion
+     */
+    private fun updateMessages(snapshot: QuerySnapshot) {
+        liste_messages = snapshot.map { doc ->
+            Message(
+                doc.id,
+                doc.getString("sender") ?: "",
+                doc.getString("texte").toString(),
+                getHeur(doc.getDate("timestamp")!!)
+            )
+        }.sortedBy { it.timestamp }.toMutableList()
+        _messages.value = liste_messages
+        }
+
+    /**
+     * Add Message to this disscussion
+     */
     fun addMessage(id: String, message: String) {
         val message = hashMapOf<String, Any>(
-            "sender" to currentUser?.email.toString(),
+            "sender" to currentUser!!.uid,
             "texte" to message,
             "timestamp" to System.currentTimeMillis()
         )
@@ -38,18 +69,24 @@ class DisscussionViewModel : ViewModel() {
             .addOnSuccessListener {
 
             }.addOnFailureListener {
-            Log.d("Disscussion", "Echec  d'envoi de ce message")
-        }
+                Log.d("Disscussion", "Echec  d'envoi de ce message")
+            }
     }
 
-    //fonction pour supprimer un message
-    fun supprimerMessage(id_disscussion: String, id_message: String) {
-        db.collection("Disscussion").document(id_disscussion).collection("Messages")
-            .document(id_message).delete().addOnSuccessListener {
+    /**
+     * Delete Message to this disscussion
+     */
+    fun supprimerMessage(idDisscussion: String, idMessage: String) {
+        db.collection("Disscussion").document(idDisscussion).collection("Messages")
+            .document(idMessage).delete().addOnSuccessListener {
 
-        }.addOnFailureListener {
-            Log.d("Disscussion", "Echec  de suppression de ce message")
-        }
+            }.addOnFailureListener {
+                Log.d("Disscussion", "Echec  de suppression de ce message")
+            }
 
+    }
+
+    override fun onCleared() {
+        listenerRegistration?.remove()
     }
 }

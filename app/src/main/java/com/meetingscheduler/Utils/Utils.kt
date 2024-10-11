@@ -8,6 +8,9 @@ import android.content.Context
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseUser
 import com.meetingscheduler.R
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class Utils {
@@ -80,6 +83,15 @@ class Utils {
         }
         fun uploadPhoto(context: Context, photoUri: String,id:String) {
             // Implémentez la logique d'envoi de la photo ici
+
+        }
+        // Fonction pour convertir la date en chaîne de caractères
+        fun getJour(date: Date): String {
+            return SimpleDateFormat("dd/MM/yy", Locale.getDefault()).format(date)
+        }
+
+        fun getHeur(date: Date): String {
+            return SimpleDateFormat("HH:MM", Locale.getDefault()).format(date)
 
         }
     }
