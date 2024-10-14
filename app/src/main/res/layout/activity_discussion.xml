@@ -36,7 +36,7 @@
                     android:id="@+id/imageDiscussion"
                     android:layout_gravity="center_vertical"
                     android:layout_height="@dimen/_50pxh"
-                    android:layout_marginStart="@dimen/_29pxh"
+                    android:layout_marginStart="@dimen/_16pxh"
                     android:layout_width="@dimen/_50pxh"
                     android:scaleType="fitXY"
                    app:shapeAppearance="@style/photoCorner"

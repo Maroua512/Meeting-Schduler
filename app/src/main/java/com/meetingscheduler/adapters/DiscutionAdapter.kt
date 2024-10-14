@@ -40,7 +40,7 @@ class DiscutionAdapter(
             textViewMessage.text = message.texte
             // Format the timestamp to a readable time (HH:mm format) and display it
             val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
-            tvHour.text = sdf.format(Date(message.timestamp))
+            tvHour.text = message.timestamp
         }
     }
 

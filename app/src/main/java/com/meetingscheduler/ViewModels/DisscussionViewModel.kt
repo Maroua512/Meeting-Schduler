@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
@@ -29,10 +30,10 @@ class DisscussionViewModel : ViewModel() {
      */
     fun getMessages(id: String) {
         listenerRegistration =
-            db.collection("Disscussion").document(id).collection("Messages").orderBy("time")
+            db.collection("Discussion").document(id).collection("messages").orderBy("timestamp")
                 .addSnapshotListener { snapshot, e ->
                     if (e != null) {
-                        Log.d("Disscussion", "Erreur de chargement des messages")
+                        Log.d("Discussion", "Erreur de chargement des messages")
                         return@addSnapshotListener
                     }
                     if (snapshot != null) {
@@ -52,24 +53,25 @@ class DisscussionViewModel : ViewModel() {
                 doc.getString("texte").toString(),
                 getHeur(doc.getDate("timestamp")!!)
             )
-        }.sortedBy { it.timestamp }.toMutableList()
+        }.toMutableList()
         _messages.value = liste_messages
-        }
+
+    }
 
     /**
      * Add Message to this disscussion
      */
-    fun addMessage(id: String, message: String) {
+    fun addMessage(id: String, texte: String) {
         val message = hashMapOf<String, Any>(
             "sender" to currentUser!!.uid,
-            "texte" to message,
-            "timestamp" to System.currentTimeMillis()
+            "texte" to texte,
+            "timestamp" to Timestamp.now()
         )
-        db.collection("Disscussion").document(id).collection("Messages").add(message)
+        db.collection("Discussion").document(id).collection("messages").add(message)
             .addOnSuccessListener {
 
             }.addOnFailureListener {
-                Log.d("Disscussion", "Echec  d'envoi de ce message")
+                Log.d("Discussion", "Echec  d'envoi de ce message")
             }
     }
 
@@ -77,11 +79,11 @@ class DisscussionViewModel : ViewModel() {
      * Delete Message to this disscussion
      */
     fun supprimerMessage(idDisscussion: String, idMessage: String) {
-        db.collection("Disscussion").document(idDisscussion).collection("Messages")
+        db.collection("Discussion").document(idDisscussion).collection("messages")
             .document(idMessage).delete().addOnSuccessListener {
 
             }.addOnFailureListener {
-                Log.d("Disscussion", "Echec  de suppression de ce message")
+                Log.d("Discussion", "Echec  de suppression de ce message")
             }
 
     }

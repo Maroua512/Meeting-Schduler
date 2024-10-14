@@ -80,6 +80,7 @@ class Chat : Fragment() {
         btnAdd.setOnClickListener {
 
         }
+
         return view
     }
 
