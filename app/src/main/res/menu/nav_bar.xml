@@ -8,7 +8,9 @@
         android:title="Notification"
         android:icon="@drawable/ic_search"
         />
-
+    <item android:id="@+id/placeholder"
+        android:title=""
+        />
     <item android:id="@+id/item_chat"
         android:title="Chat"
         android:icon="@drawable/ic_person"

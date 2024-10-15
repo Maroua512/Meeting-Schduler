@@ -40,7 +40,7 @@
                 tools:src="@drawable/img_ellipse_3" />
 
             <View
-                android:id="@+id/viewView"
+                android:id="@+id/enligne"
                 android:layout_width="@dimen/_10pxh"
                 android:layout_height="@dimen/_10pxh"
                 android:layout_gravity="bottom|end"

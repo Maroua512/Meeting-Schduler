@@ -70,6 +70,7 @@ class ListOfDiscussions(private val userViewModel: UserViewModel) : ViewModel() 
                                     members.documents.firstOrNull { it.id != Firebase.auth.currentUser!!.uid }  // Filtrer user2
                                 user2Doc?.let { member ->
                                     userViewModel.fetchUserAttributes(member.id)
+
                                     // Observer les attributs photo et name de l'utilisateur
                                     val photoObserver = Observer<String> { photo ->
                                         discussion.disImage = photo

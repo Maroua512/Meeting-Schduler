@@ -2,10 +2,11 @@ package com.meetingscheduler.ui
 
 import Home
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.meetingscheduler.Model.User
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.meetingscheduler.R
 
 class MainActivity : AppCompatActivity() {
@@ -16,12 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // Initialisation des fragments en fonction du type d'utilisateur
-        // val user: User? = intent.getParcelableExtra("user") as? User
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        replaceFragment(Home())
-
-        // Remplace le fragment par défaut en fonction du type d'utilisateur
-
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        val fabBtn = findViewById<FloatingActionButton>(R.id.addFabBtn)
         replaceFragment(Home())
 
         // Configuration du listener pour la navigation
@@ -38,11 +35,14 @@ class MainActivity : AppCompatActivity() {
             fragment?.let { replaceFragment(it) }
             true
         }
-
+        fabBtn.setOnClickListener {
+            replaceFragment(Forme())
+        }
     }
 
     // Fonction pour remplacer le fragment affiché dans le conteneur
     fun replaceFragment(fragment: Fragment) {
+        Log.d("Fr", "replaceFragment")
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragm, fragment)

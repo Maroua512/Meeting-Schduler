@@ -9,6 +9,7 @@ data class Discussion(
     var disName: String = "",
     var type: String = "",
     var disHour: String = "",
+    var is_connected: Boolean = false,
     var lastMessage: String = "",
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
@@ -17,6 +18,7 @@ data class Discussion(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
+        parcel.readInt() == 1,
         parcel.readString() ?: ""
     )
 
@@ -27,6 +29,7 @@ data class Discussion(
         dest.writeString(type)
         dest.writeString(disHour)
         dest.writeString(lastMessage)
+        dest.writeInt(if (is_connected) 1 else 0)
     }
 
     override fun describeContents(): Int {

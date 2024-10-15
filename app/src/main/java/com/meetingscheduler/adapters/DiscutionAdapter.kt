@@ -30,9 +30,10 @@ class DiscutionAdapter(
     inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //TextView  for displaying the message texte
         private val textViewMessage: TextView = view.findViewById(R.id.tvMsg)
-
         //TextView for displaying the time the message was sent
         private val tvHour: TextView = view.findViewById(R.id.tvHour)
+
+
 
         //Bind the data (Message object ) to the view (texteViews)
         fun bind(message: Message) {

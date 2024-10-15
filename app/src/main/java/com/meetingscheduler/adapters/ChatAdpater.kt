@@ -32,6 +32,7 @@ class ChatAdpater : RecyclerView.Adapter<ChatAdpater.ViewHolder>() {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
         val tvLastMsg: TextView = itemView.findViewById(R.id.tvLastMsg)
         val tvHour: TextView = itemView.findViewById(R.id.tvHour)
+        val enligneView: View = itemView.findViewById(R.id.enligne)
 
         fun bind(discussion: Discussion) {
             tvName.text = discussion.disName
@@ -39,7 +40,11 @@ class ChatAdpater : RecyclerView.Adapter<ChatAdpater.ViewHolder>() {
             tvHour.text = discussion.disHour
             Glide.with(itemView.context).load(discussion.disImage).placeholder(R.drawable.profil_vide)
                 .into(ivFriend)
-
+            if (discussion.is_connected) {
+                enligneView.visibility = View.VISIBLE
+            } else {
+                enligneView.visibility = View.GONE
+            }
             itemView.setOnClickListener {
                 Intent(itemView.context, com.meetingscheduler.ui.Discussion::class.java).also {
                     it.putExtra("discussion", discussion)
