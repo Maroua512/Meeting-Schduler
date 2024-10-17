@@ -6,7 +6,7 @@ import java.io.IOException
 class exmpl {
 
     companion object {
-        private const val API_KEY = "7dcb1c19f55311199a15b6fe3dccc7eb-7a3af442-83b2eea9"  // Remplacez par votre clé API
+        private const val API_KEY = "api"  // Remplacez par votre clé API
         private const val DOMAIN = "sandboxd63e20d5a39945fcbe6eac3b6b2a9f94.mailgun.org"
     }
 
@@ -16,7 +16,7 @@ class exmpl {
         // Construire le corps de la requête
         val requestBody = FormBody.Builder()
             .add("from", " Meetings Schduler <USER@$DOMAIN>")
-            .add("to", "marwamira299@gmail.com")  // Destinataire
+            .add("to", "marwam@gmail.com")  // Destinataire
             .add("subject", "hello")
             .add("text", "testing")
             .build()
