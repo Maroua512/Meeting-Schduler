@@ -15,20 +15,35 @@ and participate in meetings while integrating communication and event management
 
 Features
 Push Notifications: Receive notifications for upcoming events.
+
 Calendar: View and manage your events in an interactive calendar.
+
 Current Events: Easily access the list of ongoing events.
+
 Chat: Communicate with participants before and after meetings.
+
 Settings: Customize your user experience.
+
 Create an Event: Create events by specifying type, date, details, and adding supporting files.
+
 User Profiles List: View and manage user profiles (teachers and students).
+
 Discussion List: Access ongoing discussions with participants.
+
 Firebase: Utilize Firebase for user and discussion management.
+
 Glide: Optimized image loading with Glide.
+
 Koin: Simplified dependency injection with Koin.
+
 PostgreSQL: Connect to an external database for existence verification during registration.
+
 Forgot Password Management: Easily recover forgotten passwords.
+
 Account Deletion: Allow users to delete their accounts.
+
 Password Update: Easily update passwords.
+
 Technologies
 Kotlin: Primary language for app development.
 Firebase: For authentication and data management.
