@@ -35,8 +35,8 @@
                     android:layout_height="@dimen/_37pxh"
                     android:layout_width="@dimen/_50pxh"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_arrow_left_blue_gray_50_02"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_arrow_left_blue_gray_50_02"/>
+                    android:src="@drawable/back1"
+                    tools:ignore="ContentDescription" tools:src="@drawable/back1"/>
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtHome"
                     android:layout_gravity="top"

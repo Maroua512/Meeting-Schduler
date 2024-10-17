@@ -5,6 +5,7 @@
     <string name="msg_don_t_have_an_account">Dont have an account</string>
     <string name="lbl_log_in">Login </string>
     <string name="lbl_sign_up">Sign Up</string>
+    <string name="lbl_import_image">import image</string>
     <string name="msg_enter_your_email">Enter your email</string>
     <string name="msg_enter_a_password">Enter a password</string>
     <string name="msg_create_an_account">Create  an account </string>

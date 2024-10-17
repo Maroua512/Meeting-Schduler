@@ -35,7 +35,7 @@ class Forme : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forme, container, false)
+        return inflater.inflate(R.layout.create_event, container, false)
     }
 
     companion object {
