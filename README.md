@@ -60,8 +60,6 @@ MVVM (Model-View-ViewModel): An architecture that separates presentation and bus
 Installation
 Clone the repository:
 
-bash
-Copier le code
 git clone https://github.com/your-username/meeting-scheduler-app.git
 Open the project in Android Studio.
 
@@ -80,14 +78,11 @@ Contributions are welcome! To contribute:
 
 Fork the project.
 Create a new branch for your changes:
-bash
-Copier le code
+
 git checkout -b my-new-feature
 Commit your changes:
-bash
-Copier le code
+
 git commit -m "Add a new feature"
 Push the branch:
-bash
-Copier le code
+
 git push origin my-new-feature
