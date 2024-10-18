@@ -47,7 +47,7 @@
     <string name="lbl_repairmans">Repairmans</string>
     <string name="lbl_clients">Clients</string>
     <string name="lbl_join">Join</string>
-    <string name="msg_prestataire_group">Prestataire Group</string>
+    <string name="msg_group"> Group</string>
     <string name="lbl_ok_done">ok done ...</string>
     <string name="lbl_etudiants">Etudiants</string>
     <string name="lbl_contact">Contact </string>

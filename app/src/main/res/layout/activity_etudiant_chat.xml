@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:singleLine="true"
                     style="@style/txtRobotomedium18"
-                    android:text="@string/msg_prestataire_group"/>
+                    android:text="@string/msg_group"/>
                 <androidx.appcompat.widget.AppCompatButton
                     android:ellipsize="end"
                     android:gravity="center"
