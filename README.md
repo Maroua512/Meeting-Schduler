@@ -30,33 +30,35 @@ User Profiles List: View and manage user profiles (teachers and students).
 
 Discussion List: Access ongoing discussions with participants.
 
-Firebase: Utilize Firebase for user and discussion management.
-
-Glide: Optimized image loading with Glide.
-
-Koin: Simplified dependency injection with Koin.
-
-PostgreSQL: Connect to an external database for existence verification during registration.
-
 Forgot Password Management: Easily recover forgotten passwords.
 
 Account Deletion: Allow users to delete their accounts.
 
 Password Update: Easily update passwords.
 
-Technologies
+Technologies : 
+
 Kotlin: Primary language for app development.
-Firebase: For authentication and data management.
+
+Firebase: For authentication , data management,push notification.
+
 PostgreSQL: External database for user verification.
+
 Glide: For image loading.
+
 Koin: For dependency injection.
-Design Patterns
+
+Design Patterns : 
 The application utilizes several design patterns to improve code structure and maintainability:
 
 Strategy: Defines a family of algorithms, encapsulates them, and makes them interchangeable, facilitating the extension of application functionality without modifying existing code.
+
 Observer: Allows objects to subscribe and be notified of state changes in other objects, making it easier to manage real-time updates, such as notifications of new messages in chat.
+
 SOLID: Applies SOLID principles to enhance code readability and maintainability, promoting separation of concerns and extensibility.
+
 MVVM (Model-View-ViewModel): An architecture that separates presentation and business logic concerns, facilitating unit testing and application evolution.
+
 Installation
 Clone the repository:
 
